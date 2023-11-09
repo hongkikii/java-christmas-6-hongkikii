@@ -160,3 +160,9 @@
 <음료>
 제로콜라(3,000), 레드와인(60,000), 샴페인(25,000)
 ```
+
+## 🗓️ 행사 적용 기간
+
+---
+
+![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/e6b1a268-9d6c-4daf-91bf-66e9a3f77dff/5d2346f0-75e7-4907-91d4-2cab3223d99a/image.png)
