@@ -6,6 +6,7 @@ public abstract class Discount {
 
     public Discount(String name) {
         this.name = name;
+        this.price = 0;
     }
 
     public String getName() {
@@ -16,5 +17,9 @@ public abstract class Discount {
         return this.price;
     }
 
-    public abstract void calculate();
+    public void save(int price) {
+        this.price = price;
+    }
+
+    public abstract void calculate(int date, Order order);
 }

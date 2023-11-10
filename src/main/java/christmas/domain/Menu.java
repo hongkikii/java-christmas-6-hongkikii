@@ -29,6 +29,10 @@ public enum Menu {
         return this.name;
     }
 
+    public Type getType() {
+        return this.type;
+    }
+
     public boolean contain(String name) {
         for (Menu menu : Menu.values()) {
             if (menu.getName().equals(name)) {

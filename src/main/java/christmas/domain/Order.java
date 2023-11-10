@@ -1,5 +1,6 @@
 package christmas.domain;
 
+import christmas.domain.Menu.Type;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -20,5 +21,27 @@ public class Order {
             result += entry.getValue();
         }
         return result;
+    }
+
+    public int countDesert() {
+        int count = 0;
+        for (Map.Entry<Menu, Integer> entry : orders.entrySet()) {
+            Menu menu = entry.getKey();
+            if (menu.getType() == Type.DESERT) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    public int countMain() {
+        int count = 0;
+        for (Map.Entry<Menu, Integer> entry : orders.entrySet()) {
+            Menu menu = entry.getKey();
+            if (menu.getType() == Type.MAIN) {
+                count++;
+            }
+        }
+        return count;
     }
 }
