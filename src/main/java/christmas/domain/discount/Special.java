@@ -1,4 +1,7 @@
-package christmas.domain;
+package christmas.domain.discount;
+
+import christmas.domain.Order;
+import christmas.domain.discount.Discount;
 
 public class Special extends Discount {
 

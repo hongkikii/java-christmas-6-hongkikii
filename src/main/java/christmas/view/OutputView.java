@@ -1,7 +1,7 @@
 package christmas.view;
 
 import christmas.domain.Badge;
-import christmas.domain.Discount;
+import christmas.domain.discount.Discount;
 import christmas.domain.Menu;
 import christmas.domain.Order;
 import java.text.DecimalFormat;

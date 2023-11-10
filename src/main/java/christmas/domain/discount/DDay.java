@@ -1,6 +1,9 @@
-package christmas.domain;
+package christmas.domain.discount;
 
-public class DDay extends Discount{
+import christmas.domain.Order;
+import christmas.domain.discount.Discount;
+
+public class DDay extends Discount {
 
     public DDay(String name) {
         super(name);

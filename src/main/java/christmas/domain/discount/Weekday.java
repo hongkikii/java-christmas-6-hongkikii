@@ -1,8 +1,9 @@
-package christmas.domain;
+package christmas.domain.discount;
 
-import java.util.Map;
+import christmas.domain.Order;
+import christmas.domain.discount.Discount;
 
-public class Weekday extends Discount{
+public class Weekday extends Discount {
 
     public Weekday(String name) {
         super(name);

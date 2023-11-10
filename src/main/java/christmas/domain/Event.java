@@ -1,5 +1,6 @@
 package christmas.domain;
 
+import christmas.domain.discount.Discount;
 import java.util.List;
 
 public class Event {
