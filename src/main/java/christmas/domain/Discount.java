@@ -22,4 +22,5 @@ public abstract class Discount {
     }
 
     public abstract void calculate(int date, Order order);
+
 }
