@@ -27,54 +27,52 @@ public class InputView {
         System.out.println("안녕하세요! 우테코 식당 12월 이벤트 플래너입니다.");
     }
 
-    public int readDate() {
+    public void readDate() {
         System.out.println("12월 중 식당 예상 방문 날짜는 언제인가요? (숫자만 입력해 주세요!)");
-        String date;
         while (true) {
-            date = Console.readLine();
+            String input = Console.readLine();
             try {
-                validateDate(date);
+                this.date = validateDate(input);
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
-        return Integer.parseInt(date);
     }
 
-    private void validateDate(String date) {
-        checkNumber(date);
+    private int validateDate(String input) {
+        int date = checkNumber(input);
         checkBoundary(date);
+        return date;
     }
 
-    private void checkNumber(String date) {
+    private int checkNumber(String input) {
         try {
-            Integer.parseInt(date);
+            return Integer.parseInt(input);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.");
         }
     }
 
-    private void checkBoundary(String date) {
-        int number = Integer.parseInt(date);
-        if (number < 1 || number > 31) {
+    private int checkBoundary(int date) {
+        if (date < 1 || date > 31) {
             throw new IllegalArgumentException("[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.");
         }
+        return date;
     }
 
-    public String readOrder() {
+    public void readOrder() {
         System.out.println("주문하실 메뉴를 메뉴와 개수를 알려 주세요. (e.g. 해산물파스타-2,레드와인-1,초코케이크-1)");
-        String order;
         while (true) {
-            order = Console.readLine();
+            String input = Console.readLine();
             try {
-                validateOrder(order);
+                validateOrder(input);
+                this.order = input;
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
-        return order;
     }
 
     private void validateOrder(String order) {
