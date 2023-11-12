@@ -1,7 +1,12 @@
 package christmas.domain.discount;
 
+import static christmas.domain.Menu.Type.*;
+
+import christmas.domain.Menu;
+import christmas.domain.Menu.Type;
 import christmas.domain.Order;
 import christmas.domain.discount.Discount;
+import java.util.Map.Entry;
 
 public class Weekday extends Discount {
 
@@ -11,8 +16,14 @@ public class Weekday extends Discount {
 
     @Override
     public void calculate(int date, Order order) {
+        int countDesert = 0;
         if (isWeekday(date)) {
-            int countDesert = order.countDesert();
+            for (Entry<Menu, Integer> element : order.getEntrySet()) {
+                Menu menu = element.getKey();
+                if(menu.getType() == DESERT) {
+                    countDesert += element.getValue();
+                }
+            }
             save(2023 * countDesert);
         }
     }
