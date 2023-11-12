@@ -12,7 +12,7 @@ public class DDay extends Discount {
     @Override
     public void calculate(int date, Order order) {
         if (date < 25) {
-            save(date - 1 + 1000);
+            save( 1000 + ((date-1) *100));
         }
     }
 }
