@@ -34,6 +34,10 @@ public enum Menu {
         return this.type;
     }
 
+    public Integer getPrice() {
+        return this.price;
+    }
+
     public static Menu findMenu(String orderMenu) {
         for (Menu menu : Menu.values()) {
             if (menu.getName().equals(orderMenu)) {

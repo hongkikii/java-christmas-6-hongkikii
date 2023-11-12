@@ -18,7 +18,7 @@ public class Application {
 
         Order order = new Order();
         order.save(inputView.getOrder());
-
         outputView.printMenu(order);
+
     }
 }

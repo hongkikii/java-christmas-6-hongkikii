@@ -31,7 +31,10 @@ public class Order {
     public Integer getTotalPrice() {
         int result = 0;
         for (Map.Entry<Menu, Integer> entry : order.entrySet()) {
-            result += entry.getValue();
+            Menu menu = entry.getKey();
+            Integer number = entry.getValue();
+            int price = menu.getPrice();
+            result += (price * number);
         }
         return result;
     }

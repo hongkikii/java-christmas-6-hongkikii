@@ -26,7 +26,7 @@ public class OutputView {
         System.out.println();
     }
 
-    private void printTotalPrice(int totalPrice) {
+    public void printTotalPrice(int totalPrice) {
         System.out.println("<할인 전 총주문 금액>");
         DecimalFormat decimalFormat = new DecimalFormat("###,###");
         String formattedPrice = decimalFormat.format(totalPrice);
@@ -34,7 +34,7 @@ public class OutputView {
         System.out.println();
     }
 
-    private void printGiftMenu(boolean isPresented) {
+    public void printGiftMenu(boolean isPresented) {
         System.out.println("<증정 메뉴>");
         if (isPresented) {
             System.out.println("샴페인 1개");
@@ -45,7 +45,7 @@ public class OutputView {
         System.out.println();
     }
 
-    private void printBenefitList(List<Discount> discounts) {
+    public void printBenefitList(List<Discount> discounts) {
         System.out.println("<혜택 내역>");
         for (Discount discount : discounts) {
             System.out.print(discount.getName() + ": ");
