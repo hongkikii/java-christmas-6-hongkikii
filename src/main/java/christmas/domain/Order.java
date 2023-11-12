@@ -5,19 +5,32 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Order {
-    private Map<Menu, Integer> orders;
+    private final Map<Menu, Integer> order;
 
     public Order() {
-        this.orders = new HashMap<>();
+        this.order = new HashMap<>();
     }
 
     public Map<Menu, Integer> get() {
-        return this.orders;
+        return this.order;
     }
+
+    public void save(String readLine) {
+        String[] orders = readLine.split(",");
+        for (String element : orders) {
+            String[] menuAndNumber = element.split("-");
+            String orderMenu = menuAndNumber[0];
+            String orderNumber = menuAndNumber[1];
+            Menu menu = Menu.findMenu(orderMenu);
+            int number = Integer.parseInt(orderNumber);
+            this.order.put(menu, number);
+        }
+    }
+
 
     public Integer getTotalPrice() {
         int result = 0;
-        for (Map.Entry<Menu, Integer> entry : orders.entrySet()) {
+        for (Map.Entry<Menu, Integer> entry : order.entrySet()) {
             result += entry.getValue();
         }
         return result;
@@ -25,7 +38,7 @@ public class Order {
 
     public int countDesert() {
         int count = 0;
-        for (Map.Entry<Menu, Integer> entry : orders.entrySet()) {
+        for (Map.Entry<Menu, Integer> entry : order.entrySet()) {
             Menu menu = entry.getKey();
             if (menu.getType() == Type.DESERT) {
                 count++;
@@ -36,7 +49,7 @@ public class Order {
 
     public int countMain() {
         int count = 0;
-        for (Map.Entry<Menu, Integer> entry : orders.entrySet()) {
+        for (Map.Entry<Menu, Integer> entry : order.entrySet()) {
             Menu menu = entry.getKey();
             if (menu.getType() == Type.MAIN) {
                 count++;

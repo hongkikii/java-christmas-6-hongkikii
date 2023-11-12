@@ -13,6 +13,7 @@ public enum Menu {
     CAKE("초코케이크", DESERT, 15000),
     ICE_CREAM("아이스크림", DESERT, 5000),
     COLA("제로콜라", DRINK, 3000),
+    WINE("레드와인", DRINK, 60000),
     CHAMPAGNE("샴페인", DRINK, 25000);
 
     private String name;
@@ -33,13 +34,13 @@ public enum Menu {
         return this.type;
     }
 
-    public boolean contain(String name) {
+    public static Menu findMenu(String orderMenu) {
         for (Menu menu : Menu.values()) {
-            if (menu.getName().equals(name)) {
-                return true;
+            if (menu.getName().equals(orderMenu)) {
+                return menu;
             }
         }
-        return false;
+        return null;
     }
 
     public enum Type {
