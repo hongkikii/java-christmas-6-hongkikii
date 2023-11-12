@@ -3,6 +3,8 @@ package christmas.domain;
 import christmas.domain.Menu.Type;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
 
 public class Order {
     private final Map<Menu, Integer> order;
@@ -13,6 +15,10 @@ public class Order {
 
     public Map<Menu, Integer> get() {
         return this.order;
+    }
+
+    public Set<Entry<Menu, Integer>> getEntrySet() {
+        return this.order.entrySet();
     }
 
     public void save(String readLine) {
