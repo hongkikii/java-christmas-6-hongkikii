@@ -42,14 +42,12 @@ public class OutputView {
     public void printGiftMenu(Gift gift) {
         System.out.println("<증정 메뉴>");
         Map<Menu, Integer> giftMenu = gift.getMenu();
-        if(!isNull(giftMenu)) {
-            for (Map.Entry<Menu, Integer> entry : giftMenu.entrySet()) {
-                Menu menu = entry.getKey();
-                Integer number = entry.getValue();
-                System.out.println(menu.getName() + " " + number + "개");
-            }
+        for (Map.Entry<Menu, Integer> entry : giftMenu.entrySet()) {
+            Menu menu = entry.getKey();
+            Integer number = entry.getValue();
+            System.out.println(menu.getName() + " " + number + "개");
         }
-        if (isNull(giftMenu)) {
+        if (giftMenu.size() == 0) {
             System.out.println("없음");
         }
         System.out.println();
