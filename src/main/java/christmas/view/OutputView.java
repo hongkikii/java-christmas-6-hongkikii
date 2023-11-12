@@ -83,7 +83,7 @@ public class OutputView {
         System.out.println();
     }
 
-    private void printAmountOfPayment(int amountOfPayment) {
+    public void printAmountOfPayment(int amountOfPayment) {
         System.out.println("<할인 후 예상 결제 금액>");
         DecimalFormat decimalFormat = new DecimalFormat("###,###");
         String formattedPrice = decimalFormat.format(amountOfPayment);

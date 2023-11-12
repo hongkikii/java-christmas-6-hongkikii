@@ -60,5 +60,8 @@ public class Application {
             benefitPrice += discount.getPrice();
         }
         outputView.printBenefitPrice(benefitPrice);
+
+        int amountOfPayment = order.getTotalPrice() - benefitPrice + gift.getPrice();
+        outputView.printAmountOfPayment(amountOfPayment);
     }
 }
