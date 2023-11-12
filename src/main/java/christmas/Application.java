@@ -34,24 +34,27 @@ public class Application {
         List<Discount> discounts = new ArrayList<>();
 
         DDay dDay = new DDay("크리스마스 디데이 할인");
-        dDay.calculate(inputView.getDate(), order);
         discounts.add(dDay);
 
         Weekday weekday = new Weekday("평일 할인");
-        weekday.calculate(inputView.getDate(), order);
         discounts.add(weekday);
 
         Weekend weekend = new Weekend("주말 할인");
-        weekend.calculate(inputView.getDate(), order);
         discounts.add(weekend);
 
         Special special = new Special("특별 할인");
-        special.calculate(inputView.getDate(), order);
         discounts.add(special);
 
         Gift gift = new Gift("증정 이벤트");
-        gift.calculate(inputView.getDate(), order);
         discounts.add(gift);
+
+        if (order.getEventApply()) {
+            dDay.calculate(inputView.getDate(), order);
+            weekday.calculate(inputView.getDate(), order);
+            weekend.calculate(inputView.getDate(), order);
+            special.calculate(inputView.getDate(), order);
+            gift.calculate(inputView.getDate(), order);
+        }
 
         outputView.printGiftMenu(gift);
         outputView.printBenefitList(discounts);

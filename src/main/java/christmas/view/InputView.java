@@ -115,7 +115,7 @@ public class InputView {
         for (String order : orders) {
             String count = order.split("-")[1];
             int number = Integer.parseInt(count);
-            if (number < 1 || number > 20) {
+            if (number < 1) {
                 throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.3");
             }
         }
