@@ -2,24 +2,25 @@ package christmas.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import christmas.domain.Menu;
+import christmas.domain.Order;
 import java.util.HashSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class InputView {
     private int date;
-    private String order;
+    private Order order;
 
     public InputView() {
         this.date = 0;
-        this.order = "";
+        this.order = new Order();
     }
 
     public int getDate() {
         return date;
     }
 
-    public String getOrder() {
+    public Order getOrder() {
         return order;
     }
 
@@ -67,7 +68,8 @@ public class InputView {
             String input = Console.readLine();
             try {
                 validateOrder(input);
-                this.order = input;
+                Order order = new Order();
+                order.save(input);
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());

@@ -25,8 +25,7 @@ public class Application {
         OutputView outputView = new OutputView();
         outputView.printHeader(inputView.getDate());
 
-        Order order = new Order();
-        order.save(inputView.getOrder());
+        Order order = inputView.getOrder();
         outputView.printMenu(order);
 
         outputView.printTotalPrice(order.getTotalPrice());
