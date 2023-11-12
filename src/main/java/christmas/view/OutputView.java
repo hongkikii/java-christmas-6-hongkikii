@@ -1,12 +1,17 @@
 package christmas.view;
 
+import static java.util.Objects.isNull;
+
 import christmas.domain.Badge;
 import christmas.domain.discount.Discount;
 import christmas.domain.Menu;
 import christmas.domain.Order;
+import christmas.domain.discount.Gift;
 import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
 
 public class OutputView {
 
@@ -34,12 +39,17 @@ public class OutputView {
         System.out.println();
     }
 
-    public void printGiftMenu(boolean isPresented) {
+    public void printGiftMenu(Gift gift) {
         System.out.println("<증정 메뉴>");
-        if (isPresented) {
-            System.out.println("샴페인 1개");
+        Map<Menu, Integer> giftMenu = gift.getMenu();
+        if(!isNull(giftMenu)) {
+            for (Map.Entry<Menu, Integer> entry : giftMenu.entrySet()) {
+                Menu menu = entry.getKey();
+                Integer number = entry.getValue();
+                System.out.println(menu.getName() + " " + number + "개");
+            }
         }
-        if (!isPresented) {
+        if (isNull(giftMenu)) {
             System.out.println("없음");
         }
         System.out.println();

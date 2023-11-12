@@ -2,6 +2,7 @@ package christmas;
 
 
 import christmas.domain.Order;
+import christmas.domain.discount.Gift;
 import christmas.view.InputView;
 import christmas.view.OutputView;
 
@@ -19,6 +20,12 @@ public class Application {
         Order order = new Order();
         order.save(inputView.getOrder());
         outputView.printMenu(order);
+
+        outputView.printTotalPrice(order.getTotalPrice());
+
+        Gift gift = new Gift("증정 이벤트");
+        gift.calculate(inputView.getDate(), order);
+        outputView.printGiftMenu(gift);
 
     }
 }
