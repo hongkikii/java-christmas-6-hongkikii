@@ -1,21 +1,33 @@
 package christmas.domain;
 
 public enum Badge {
-    STAR("별", 5000, 9999),
-    TREE("트리", 10000, 19999),
-    SANTA("산타", 20000, 100000); // 총혜택 금액 최대 제대로 계산하기
+    STAR("별", 5000),
+    TREE("트리", 10000),
+    SANTA("산타", 20000),
+    NONE("없음", 0);
 
     private String name;
     private Integer minPrice;
-    private Integer maxPrice;
 
-    Badge(String name, Integer minPrice, Integer maxPrice) {
+    Badge(String name, Integer minPrice) {
         this.name = name;
         this.minPrice = minPrice;
-        this.maxPrice = maxPrice;
     }
 
     public String getName() {
         return this.name;
+    }
+
+    public static Badge getBadge(Integer benefitPrice) {
+        if (benefitPrice >= STAR.minPrice && benefitPrice < TREE.minPrice) {
+            return STAR;
+        }
+        if (benefitPrice >= TREE.minPrice && benefitPrice < SANTA.minPrice) {
+            return TREE;
+        }
+        if (benefitPrice >= SANTA.minPrice) {
+            return SANTA;
+        }
+        return NONE;
     }
 }

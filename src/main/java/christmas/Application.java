@@ -1,6 +1,7 @@
 package christmas;
 
 
+import christmas.domain.Badge;
 import christmas.domain.Order;
 import christmas.domain.discount.DDay;
 import christmas.domain.discount.Discount;
@@ -63,5 +64,8 @@ public class Application {
 
         int amountOfPayment = order.getTotalPrice() - benefitPrice + gift.getPrice();
         outputView.printAmountOfPayment(amountOfPayment);
+
+        Badge badge = Badge.getBadge(benefitPrice);
+        outputView.printBadge(badge);
     }
 }

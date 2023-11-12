@@ -91,13 +91,8 @@ public class OutputView {
         System.out.println();
     }
 
-    private void printBadge(Badge badge) {
+    public void printBadge(Badge badge) {
         System.out.println("<12월 이벤트 배지>");
-        if (badge == null) {
-            System.out.println("없음");
-            return;
-        }
         System.out.println(badge.getName());
     }
-
 }
