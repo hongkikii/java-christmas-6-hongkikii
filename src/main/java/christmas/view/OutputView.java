@@ -73,13 +73,12 @@ public class OutputView {
 
     public void printBenefitPrice(int benefitPrice) {
         System.out.println("<총혜택 금액>");
-        if (benefitPrice == 0) {
-            System.out.println("0원");
-            return;
-        }
         DecimalFormat decimalFormat = new DecimalFormat("###,###");
         String formattedPrice = decimalFormat.format(benefitPrice);
-        System.out.println("-" + formattedPrice + "원");
+        if (!formattedPrice.equals("0")) {
+            formattedPrice = "-" + formattedPrice;
+        }
+        System.out.println(formattedPrice + "원");
         System.out.println();
     }
 
