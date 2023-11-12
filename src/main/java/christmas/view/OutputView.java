@@ -10,8 +10,6 @@ import christmas.domain.discount.Gift;
 import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Set;
 
 public class OutputView {
 
@@ -55,15 +53,18 @@ public class OutputView {
 
     public void printBenefitList(List<Discount> discounts) {
         System.out.println("<혜택 내역>");
+        int totalDiscountPrice = 0;
         for (Discount discount : discounts) {
-            if(discount.getPrice() != 0) {
+            Integer discountPrice = discount.getPrice();
+            if(discountPrice != 0) {
                 System.out.print(discount.getName() + ": ");
                 DecimalFormat decimalFormat = new DecimalFormat("###,###");
                 String formattedPrice = decimalFormat.format(discount.getPrice());
                 System.out.println("-" + formattedPrice + "원");
+                totalDiscountPrice += discountPrice;
             }
         }
-        if (discounts.size() == 0) {
+        if (totalDiscountPrice == 0) {
             System.out.println("없음");
         }
         System.out.println();
