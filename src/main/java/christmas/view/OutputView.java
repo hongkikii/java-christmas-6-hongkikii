@@ -71,7 +71,7 @@ public class OutputView {
         System.out.println();
     }
 
-    private void printBenefitPrice(int benefitPrice) {
+    public void printBenefitPrice(int benefitPrice) {
         System.out.println("<총혜택 금액>");
         if (benefitPrice == 0) {
             System.out.println("0원");

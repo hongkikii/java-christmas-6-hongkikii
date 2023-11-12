@@ -54,5 +54,11 @@ public class Application {
 
         outputView.printGiftMenu(gift);
         outputView.printBenefitList(discounts);
+
+        int benefitPrice = 0;
+        for (Discount discount : discounts) {
+            benefitPrice += discount.getPrice();
+        }
+        outputView.printBenefitPrice(benefitPrice);
     }
 }
