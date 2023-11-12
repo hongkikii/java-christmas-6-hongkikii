@@ -58,8 +58,12 @@ public class OutputView {
     public void printBenefitList(List<Discount> discounts) {
         System.out.println("<혜택 내역>");
         for (Discount discount : discounts) {
-            System.out.print(discount.getName() + ": ");
-            System.out.println("-" + discount.getPrice() + "원");
+            if(discount.getPrice() != 0) {
+                System.out.print(discount.getName() + ": ");
+                DecimalFormat decimalFormat = new DecimalFormat("###,###");
+                String formattedPrice = decimalFormat.format(discount.getPrice());
+                System.out.println("-" + formattedPrice + "원");
+            }
         }
         if (discounts.size() == 0) {
             System.out.println("없음");
