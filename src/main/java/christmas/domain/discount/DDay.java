@@ -1,17 +1,19 @@
 package christmas.domain.discount;
 
+import static christmas.constant.Constants.DDay.*;
+
 import christmas.domain.Order;
 
 public class DDay extends Discount {
 
     public DDay() {
-        super("크리스마스 디데이 할인");
+        super(DDAY_NAME);
     }
 
     @Override
     public void calculate(int date, Order order) {
-        if (date <= 25) {
-            save( 1000 + ((date-1) *100));
+        if (date <= DDAY) {
+            save(BASE_DISCOUNT + ((date - 1) * ADD_DISCOUNT));
         }
     }
 }

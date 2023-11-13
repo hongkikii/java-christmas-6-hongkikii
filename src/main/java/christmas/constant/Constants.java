@@ -50,6 +50,13 @@ public class Constants {
         public static final Integer MIN_EVENT_APPLY_PRICE = 10000;
     }
 
+    public class DDay {
+        public static final String DDAY_NAME = "크리스마스 디데이 할인";
+        public static final Integer DDAY = 25;
+        public static final Integer BASE_DISCOUNT = 1000;
+        public static final Integer ADD_DISCOUNT = 100;
+    }
+
     public class Error {
         public static final String ERROR_DATE = "[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.";
         public static final String ERROR_ORDER = "[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.";
