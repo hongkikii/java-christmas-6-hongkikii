@@ -1,9 +1,12 @@
 package christmas.view;
 
+import static christmas.constant.Constants.*;
+
 import camp.nextstep.edu.missionutils.Console;
 import christmas.domain.Menu;
 import christmas.domain.Order;
 import java.util.HashSet;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -31,88 +34,94 @@ public class InputView {
     }
 
     private void introduce() {
-        System.out.println("안녕하세요! 우테코 식당 12월 이벤트 플래너입니다.");
+        System.out.println(INTRODUCE);
     }
 
     private void readDate() {
-        System.out.println("12월 중 식당 예상 방문 날짜는 언제인가요? (숫자만 입력해 주세요!)");
+        System.out.println(ASK_DATE);
+        String input = read(DATE);
+        date = Integer.parseInt(input);
+    }
+
+    private void readOrder() {
+        System.out.println(ASK_ORDER);
+        String input = read(ORDER);
+        order.save(input);
+    }
+
+    private String read(String type) {
+        String input;
         while (true) {
-            String input = Console.readLine();
+            input = Console.readLine();
             try {
-                this.date = validateDate(input);
+                validateInput(type, input);
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
+        return input;
     }
 
-    private int validateDate(String input) {
+    private void validateInput(String type, String input) {
+        if (type.equals(DATE)) {
+            validateDate(input);
+        }
+        if (type.equals(ORDER)) {
+            validateOrder(input);
+        }
+    }
+
+    private void validateDate(String input) {
         int date = checkNumber(input);
         checkBoundary(date);
-        return date;
     }
 
-    private int checkNumber(String input) {
+    private void validateOrder(String orderLine) {
+        checkForm(orderLine);
+        String[] orders = orderLine.split(ORDER_SPLIT);
+        checkNoMenu(orders);
+        checkCount(orders);
+        checkDuplicateMenu(orders);
+    }
+
+    private int checkNumber(String date) {
         try {
-            return Integer.parseInt(input);
+            return Integer.parseInt(date);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.");
+            throw new IllegalArgumentException(ERROR_DATE);
         }
     }
 
     private int checkBoundary(int date) {
-        if (date < 1 || date > 31) {
-            throw new IllegalArgumentException("[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.");
+        if (date < DECEMBER_START || date > DECEMBER_END) {
+            throw new IllegalArgumentException(ERROR_DATE);
         }
         return date;
     }
 
-    private void readOrder() {
-        System.out.println("주문하실 메뉴를 메뉴와 개수를 알려 주세요. (e.g. 해산물파스타-2,레드와인-1,초코케이크-1)");
-        while (true) {
-            String input = Console.readLine();
-            try {
-                validateOrder(input);
-                Order order = new Order();
-                order.save(input);
-                break;
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
-    }
-
-    private void validateOrder(String order) {
-        checkForm(order);
-        String[] orders = order.split(",");
-        checkNoMenu(orders);
-        checkCount(orders); // 1이상, 전체 20이하
-        checkDuplicateMenu(orders);
-    }
-
-    private void checkForm(String order) {
-        String regex = "^[가-힣]+-\\d+(,[가-힣]+-\\d+)*$";
+    private void checkForm(String orderLine) {
+        String regex = ORDER_REGEX;
         Pattern pattern = Pattern.compile(regex);
-        Matcher matcher = pattern.matcher(order);
+        Matcher matcher = pattern.matcher(orderLine);
         if (!matcher.matches()) {
-            throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.1");
+            throw new IllegalArgumentException(ERROR_ORDER);
         }
     }
 
     private void checkNoMenu(String[] orders) {
         for (String order : orders) {
-            String name = order.split("-")[0];
-            if (contain(name)) {
+            String menuName = order.split(MENU_AND_NUMBER_SPLIT)[0];
+            if (contain(menuName)) {
                 return;
             }
         }
-        throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.2");
+        throw new IllegalArgumentException(ERROR_ORDER);
     }
 
-    private boolean contain(String name) {
+    private boolean contain(String menuName) {
         for (Menu menu : Menu.values()) {
-            if (menu.getName().equals(name)) {
+            if (menu.getName().equals(menuName)) {
                 return true;
             }
         }
@@ -121,22 +130,22 @@ public class InputView {
 
     private void checkCount(String[] orders) {
         for (String order : orders) {
-            String count = order.split("-")[1];
+            String count = order.split(MENU_AND_NUMBER_SPLIT)[1];
             int number = Integer.parseInt(count);
-            if (number < 1) {
-                throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.3");
+            if (number < MIN_ORDER_COUNT || number > MAX_ORDER_COUNT) {
+                throw new IllegalArgumentException(ERROR_ORDER);
             }
         }
     }
 
     private void checkDuplicateMenu(String[] orders) {
-        HashSet<String> noDuplicateMenu = new HashSet<>();
+        Set<String> noDuplicateMenu = new HashSet<>();
         for (String order : orders) {
-            String name = order.split("-")[0];
+            String name = order.split(MENU_AND_NUMBER_SPLIT)[0];
             noDuplicateMenu.add(name);
         }
         if (noDuplicateMenu.size() != orders.length) {
-            throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.4");
+            throw new IllegalArgumentException(ERROR_ORDER);
         }
     }
 }
