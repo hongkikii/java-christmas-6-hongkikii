@@ -1,5 +1,6 @@
 package christmas.view;
 
+import static christmas.constant.Constants.Common.*;
 import static christmas.constant.Constants.OutputView.*;
 
 import christmas.domain.Badge;
