@@ -41,14 +41,12 @@ public class InputView {
 
     private void readDate() {
         System.out.println(ASK_DATE);
-        String input = read(DATE);
-        date = Integer.parseInt(input);
+        read(DATE);
     }
 
     private void readOrder() {
         System.out.println(ASK_ORDER);
-        String input = read(ORDER);
-        order.save(input);
+        read(ORDER);
     }
 
     private String read(String type) {
@@ -57,6 +55,7 @@ public class InputView {
             input = Console.readLine();
             try {
                 validateInput(type, input);
+                saveInput(type, input);
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
@@ -71,6 +70,15 @@ public class InputView {
         }
         if (type.equals(ORDER)) {
             validateOrder(input);
+        }
+    }
+
+    private void saveInput(String type, String input) {
+        if (type.equals(DATE)) {
+            date = Integer.parseInt(input);
+        }
+        if (type.equals(ORDER)) {
+            order.save(input);
         }
     }
 
