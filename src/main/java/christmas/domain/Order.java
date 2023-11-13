@@ -2,6 +2,7 @@ package christmas.domain;
 
 import static christmas.domain.Menu.Type.*;
 
+import christmas.domain.Menu.Type;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -75,13 +76,17 @@ public class Order {
     }
 
     public int countMain() {
-        int count = 0;
-        for (Map.Entry<Menu, Integer> entry : order.entrySet()) {
-            Menu menu = entry.getKey();
-            if (menu.getType() == MAIN) {
-                count++;
-            }
-        }
-        return count;
+        return countMenu(MAIN);
+    }
+
+    public int countDesert() {
+        return countMenu(DESERT);
+    }
+
+    private int countMenu(Type type) {
+        return (int) order.entrySet().stream()
+                .map(Map.Entry::getKey)
+                .filter(menu -> menu.getType() == type)
+                .count();
     }
 }

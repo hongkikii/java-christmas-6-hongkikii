@@ -14,14 +14,8 @@ public class Weekday extends Discount {
 
     @Override
     public void calculate(int date, Order order) {
-        int countDesert = 0;
         if (isWeekday(date)) {
-            for (Entry<Menu, Integer> element : order.getEntrySet()) {
-                Menu menu = element.getKey();
-                if(menu.getType() == DESERT) {
-                    countDesert += element.getValue();
-                }
-            } // order로 옮기기
+            int countDesert = order.countDesert();
             save(2023 * countDesert);
         }
     }
