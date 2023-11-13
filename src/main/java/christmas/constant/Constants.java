@@ -55,6 +55,13 @@ public class Constants {
         public static final Integer ADD_DISCOUNT = 100;
     }
 
+    public class Gift {
+        public static final String GIFT_NAME = "증정 이벤트";
+        public static final Integer GIFT_CHAMPAGNE_NUMBER = 1;
+        public static final Integer MIN_GIFT_PRICE = 120000;
+        public static final Integer CHAMPAGNE_PRICE = 25000;
+    }
+
     public class Error {
         public static final String ERROR_DATE = "[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.";
         public static final String ERROR_ORDER = "[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.";

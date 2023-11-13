@@ -1,16 +1,17 @@
 package christmas.domain.discount;
 
+import static christmas.constant.Constants.Gift.*;
+
 import christmas.domain.Menu;
 import christmas.domain.Order;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Map.Entry;
 
 public class Gift extends Discount {
     private Map<Menu, Integer> giftMenu;
 
     public Gift() {
-        super("증정 이벤트");
+        super(GIFT_NAME);
         this.giftMenu = new HashMap<>();
     }
 
@@ -19,24 +20,20 @@ public class Gift extends Discount {
     }
 
     public Integer getPrice() {
-        int price = 0;
-        for (Entry<Menu, Integer> element : giftMenu.entrySet()) {
-            Menu menu = element.getKey();
-            Integer count = element.getValue();
-            price += (menu.getPrice() * count);
-        }
-        return price;
+        return giftMenu.entrySet().stream()
+                .mapToInt(entry -> entry.getKey().getPrice() * entry.getValue())
+                .sum();
     }
 
     @Override
     public void calculate(int date, Order order) {
-        if (order.getTotalPrice() > 120000) {
-            save(25000);
+        if (order.getTotalPrice() > MIN_GIFT_PRICE) {
             addMenu();
         }
     }
 
     private void addMenu() {
-        giftMenu.put(Menu.CHAMPAGNE, 1);
+        giftMenu.put(Menu.CHAMPAGNE, GIFT_CHAMPAGNE_NUMBER);
+        save(CHAMPAGNE_PRICE);
     }
 }
