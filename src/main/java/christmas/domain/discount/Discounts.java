@@ -1,5 +1,9 @@
 package christmas.domain.discount;
 
+import static christmas.constant.Constants.Common.*;
+
+import christmas.constant.Constants;
+import christmas.constant.Constants.Common;
 import christmas.domain.Badge;
 import christmas.domain.Order;
 import java.util.ArrayList;
@@ -34,7 +38,7 @@ public class Discounts {
     }
 
     public Integer getBenefitPrice() {
-        int benefitPrice = 0;
+        int benefitPrice = ZERO;
         for (Discount discount : discounts) {
             benefitPrice += discount.getPrice();
         }
