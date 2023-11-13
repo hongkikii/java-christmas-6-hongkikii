@@ -45,9 +45,6 @@ public class Discounts {
         Optional<Discount> gift = discounts.stream()
                 .filter(discount -> discount instanceof Gift)
                 .findFirst();
-        if (gift.isEmpty()) {
-            throw new IllegalArgumentException("[ERROR] 증정 메뉴가 저장되지 않았습니다.");
-        }
         return (Gift) gift.get();
     }
 
