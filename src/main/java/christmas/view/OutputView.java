@@ -12,7 +12,6 @@ import christmas.domain.discount.Gift;
 import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 
 public class OutputView {
 

@@ -2,8 +2,6 @@ package christmas.domain.discount;
 
 import static christmas.constant.Constants.Common.*;
 
-import christmas.constant.Constants;
-import christmas.constant.Constants.Common;
 import christmas.domain.Badge;
 import christmas.domain.Order;
 import java.util.ArrayList;

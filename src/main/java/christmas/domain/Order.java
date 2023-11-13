@@ -5,7 +5,6 @@ import static christmas.constant.Constants.Error.*;
 import static christmas.constant.Constants.Order.*;
 import static christmas.domain.Menu.Type.*;
 
-import christmas.constant.Constants;
 import christmas.domain.Menu.Type;
 import java.util.HashMap;
 import java.util.Map;
