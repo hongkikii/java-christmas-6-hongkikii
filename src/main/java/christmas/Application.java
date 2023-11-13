@@ -37,11 +37,6 @@ public class Application {
 
     private static void showResult() {
         outputView.printHeader(date);
-        outputView.printOrder(order);
-        outputView.printGiftMenu(discounts.findGift());
-        outputView.printBenefitList(discounts.get());
-        outputView.printBenefitPrice(discounts.getBenefitPrice());
-        outputView.printAmountOfPayment(discounts.getAmountOfPayment(order));
-        outputView.printBadge(discounts.getBadge());
+        outputView.printResult(order, discounts);
     }
 }

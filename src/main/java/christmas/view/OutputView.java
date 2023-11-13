@@ -1,11 +1,10 @@
 package christmas.view;
 
-import static java.util.Objects.isNull;
-
 import christmas.domain.Badge;
 import christmas.domain.discount.Discount;
 import christmas.domain.Menu;
 import christmas.domain.Order;
+import christmas.domain.discount.Discounts;
 import christmas.domain.discount.Gift;
 import java.text.DecimalFormat;
 import java.util.List;
@@ -18,12 +17,17 @@ public class OutputView {
         System.out.println();
     }
 
-    public void printOrder(Order order) {
+    public void printResult(Order order, Discounts discounts) {
         printMenu(order);
         printTotalPrice(order.getTotalPrice());
+        printGiftMenu(discounts.findGift());
+        printBenefitList(discounts.get());
+        printBenefitPrice(discounts.getBenefitPrice());
+        printAmountOfPayment(discounts.getAmountOfPayment(order));
+        printBadge(discounts.getBadge());
     }
 
-    public void printMenu(Order order) {
+    private void printMenu(Order order) {
         System.out.println("<주문 메뉴>");
         Map<Menu, Integer> orders = order.get();
         for (Map.Entry<Menu, Integer> entry : orders.entrySet()) {
@@ -34,7 +38,7 @@ public class OutputView {
         System.out.println();
     }
 
-    public void printTotalPrice(int totalPrice) {
+    private void printTotalPrice(int totalPrice) {
         System.out.println("<할인 전 총주문 금액>");
         DecimalFormat decimalFormat = new DecimalFormat("###,###");
         String formattedPrice = decimalFormat.format(totalPrice);
@@ -42,7 +46,7 @@ public class OutputView {
         System.out.println();
     }
 
-    public void printGiftMenu(Gift gift) {
+    private void printGiftMenu(Gift gift) {
         System.out.println("<증정 메뉴>");
         Map<Menu, Integer> giftMenu = gift.getMenu();
         for (Map.Entry<Menu, Integer> entry : giftMenu.entrySet()) {
@@ -56,7 +60,7 @@ public class OutputView {
         System.out.println();
     }
 
-    public void printBenefitList(List<Discount> discounts) {
+    private void printBenefitList(List<Discount> discounts) {
         System.out.println("<혜택 내역>");
         int totalDiscountPrice = 0;
         for (Discount discount : discounts) {
@@ -75,7 +79,7 @@ public class OutputView {
         System.out.println();
     }
 
-    public void printBenefitPrice(int benefitPrice) {
+    private void printBenefitPrice(int benefitPrice) {
         System.out.println("<총혜택 금액>");
         DecimalFormat decimalFormat = new DecimalFormat("###,###");
         String formattedPrice = decimalFormat.format(benefitPrice);
@@ -86,7 +90,7 @@ public class OutputView {
         System.out.println();
     }
 
-    public void printAmountOfPayment(int amountOfPayment) {
+    private void printAmountOfPayment(int amountOfPayment) {
         System.out.println("<할인 후 예상 결제 금액>");
         DecimalFormat decimalFormat = new DecimalFormat("###,###");
         String formattedPrice = decimalFormat.format(amountOfPayment);
@@ -94,7 +98,7 @@ public class OutputView {
         System.out.println();
     }
 
-    public void printBadge(Badge badge) {
+    private void printBadge(Badge badge) {
         System.out.println("<12월 이벤트 배지>");
         System.out.println(badge.getName());
     }
