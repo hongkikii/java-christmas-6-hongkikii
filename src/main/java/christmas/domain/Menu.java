@@ -2,6 +2,8 @@ package christmas.domain;
 
 import static christmas.domain.Menu.Type.*;
 
+import java.util.Arrays;
+
 public enum Menu {
     SOUP("양송이수프", APPETIZER, 6000),
     TAPAS("타파스", APPETIZER, 5500),
@@ -39,12 +41,10 @@ public enum Menu {
     }
 
     public static Menu findMenu(String orderMenu) {
-        for (Menu menu : Menu.values()) {
-            if (menu.getName().equals(orderMenu)) {
-                return menu;
-            }
-        }
-        return null;
+        return Arrays.stream(Menu.values())
+                .filter(menu -> menu.getName().equals(orderMenu))
+                .findFirst()
+                .orElse(null);
     }
 
     public enum Type {
