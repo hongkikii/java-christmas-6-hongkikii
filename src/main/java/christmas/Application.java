@@ -7,6 +7,7 @@ import christmas.domain.discount.Discounts;
 import christmas.domain.discount.Gift;
 import christmas.domain.discount.Special;
 import christmas.domain.discount.Weekday;
+import christmas.domain.discount.Weekend;
 import christmas.view.InputView;
 import christmas.view.OutputView;
 
@@ -31,7 +32,7 @@ public class Application {
     }
 
     private static void getDiscounts() {
-        discounts.save(new DDay(), new Weekday(), new Special(), new Gift());
+        discounts.save(new DDay(), new Weekday(), new Weekend(), new Special(), new Gift());
         discounts.apply(date, order);
     }
 
