@@ -6,10 +6,11 @@ import static christmas.constant.Constants.Error.*;
 import camp.nextstep.edu.missionutils.Console;
 import christmas.domain.Menu;
 import christmas.domain.Order;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.Arrays;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 public class InputView {
     private int date;
@@ -80,7 +81,7 @@ public class InputView {
 
     private void validateOrder(String orderLine) {
         checkForm(orderLine);
-        String[] orders = orderLine.split(ORDER_SPLIT);
+        List<String> orders = Arrays.asList(orderLine.split(ORDER_SPLIT));
         checkNoMenu(orders);
         checkCount(orders);
         checkDuplicateMenu(orders);
@@ -110,42 +111,36 @@ public class InputView {
         }
     }
 
-    private void checkNoMenu(String[] orders) {
-        for (String order : orders) {
-            String menuName = order.split(MENU_AND_NUMBER_SPLIT)[0];
-            if (contain(menuName)) {
-                return;
-            }
+    private void checkNoMenu(List<String> orders) {
+        if (orders.stream()
+                .map(order -> order.split(MENU_AND_NUMBER_SPLIT)[0])
+                .allMatch(this::contain)) {
+            return;
         }
         throw new IllegalArgumentException(ERROR_ORDER);
     }
 
     private boolean contain(String menuName) {
-        for (Menu menu : Menu.values()) {
-            if (menu.getName().equals(menuName)) {
-                return true;
-            }
-        }
-        return false;
+        return Arrays.stream(Menu.values())
+                .anyMatch(menu -> menu.getName().equals(menuName));
     }
 
-    private void checkCount(String[] orders) {
-        for (String order : orders) {
-            String count = order.split(MENU_AND_NUMBER_SPLIT)[1];
-            int number = Integer.parseInt(count);
-            if (number < MIN_ORDER_COUNT || number > MAX_ORDER_COUNT) {
-                throw new IllegalArgumentException(ERROR_ORDER);
-            }
+    private void checkCount(List<String> orders) {
+        if (orders.stream()
+                .map(order -> Integer.parseInt(order.split(MENU_AND_NUMBER_SPLIT)[1]))
+                .allMatch(number -> number >= MIN_ORDER_COUNT && number <= MAX_ORDER_COUNT)) {
+            return;
         }
+        throw new IllegalArgumentException(ERROR_ORDER);
     }
 
-    private void checkDuplicateMenu(String[] orders) {
-        Set<String> noDuplicateMenu = new HashSet<>();
-        for (String order : orders) {
-            String name = order.split(MENU_AND_NUMBER_SPLIT)[0];
-            noDuplicateMenu.add(name);
-        }
-        if (noDuplicateMenu.size() != orders.length) {
+    private void checkDuplicateMenu(List<String> orders) {
+        List<String> noDuplicateMenu = orders.stream()
+                .map(order -> order.split(MENU_AND_NUMBER_SPLIT)[0])
+                .distinct()
+                .collect(Collectors.toList());
+
+        if (noDuplicateMenu.size() != orders.size()) {
             throw new IllegalArgumentException(ERROR_ORDER);
         }
     }
