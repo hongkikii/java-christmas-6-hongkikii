@@ -1,10 +1,6 @@
 package christmas.domain.discount;
 
-import static christmas.domain.Menu.Type.*;
-
-import christmas.domain.Menu;
 import christmas.domain.Order;
-import java.util.Map.Entry;
 
 public class Weekday extends Discount {
 
