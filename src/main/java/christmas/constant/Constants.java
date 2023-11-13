@@ -2,6 +2,13 @@ package christmas.constant;
 
 public class Constants {
 
+    public class Common {
+        public static final String MENU_AND_NUMBER_SPLIT = "-";
+        public static final String ORDER_SPLIT = ",";
+
+        public static final Integer MAX_ORDER_COUNT = 20;
+    }
+
     public class InputView {
         public static final String INTRODUCE = "안녕하세요! 우테코 식당 12월 이벤트 플래너입니다.";
         public static final String ASK_DATE = "12월 중 식당 예상 방문 날짜는 언제인가요? (숫자만 입력해 주세요!)";
@@ -9,15 +16,11 @@ public class Constants {
 
         public static final String ORDER = "order";
         public static final String DATE = "date";
-
-        public static final String MENU_AND_NUMBER_SPLIT = "-";
-        public static final String ORDER_SPLIT = ",";
         public static final String ORDER_REGEX = "^[가-힣]+-\\d+(,[가-힣]+-\\d+)*$";
 
         public static final Integer DECEMBER_START = 1;
         public static final Integer DECEMBER_END = 31;
         public static final Integer MIN_ORDER_COUNT = 1;
-        public static final Integer MAX_ORDER_COUNT = 20;
     }
 
     public class OutputView {
@@ -43,8 +46,15 @@ public class Constants {
         public static final Integer ZERO = 0;
     }
 
+    public class Order {
+        public static final Integer MIN_EVENT_APPLY_PRICE = 10000;
+    }
+
     public class Error {
         public static final String ERROR_DATE = "[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.";
         public static final String ERROR_ORDER = "[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.";
+
+        public static final String ERROR_ORDER_ONLY_DRINK = "[ERROR] 음료만 주문할 수 없습니다. 다시 입력해 주세요.";
+        public static final String ERROR_ORDER_EXCEED_MAX = "[ERROR] 주문 수량은 20개가 최대입니다. 다시 입력해 주세요.";
     }
 }
