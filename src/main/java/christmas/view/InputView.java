@@ -1,6 +1,7 @@
 package christmas.view;
 
-import static christmas.constant.Constants.*;
+import static christmas.constant.Constants.InputView.*;
+import static christmas.constant.Constants.Error.*;
 
 import camp.nextstep.edu.missionutils.Console;
 import christmas.domain.Menu;
