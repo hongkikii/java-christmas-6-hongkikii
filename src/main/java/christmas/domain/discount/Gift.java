@@ -7,20 +7,20 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 public class Gift extends Discount {
-    private Map<Menu, Integer> menu;
+    private Map<Menu, Integer> giftMenu;
 
     public Gift() {
         super("증정 이벤트");
-        this.menu = new HashMap<>();
+        this.giftMenu = new HashMap<>();
     }
 
-    public Map<Menu, Integer> getMenu() {
-        return this.menu;
+    public Map<Menu, Integer> get() {
+        return this.giftMenu;
     }
 
     public Integer getPrice() {
         int price = 0;
-        for (Entry<Menu, Integer> element : menu.entrySet()) {
+        for (Entry<Menu, Integer> element : giftMenu.entrySet()) {
             Menu menu = element.getKey();
             Integer count = element.getValue();
             price += (menu.getPrice() * count);
@@ -37,6 +37,6 @@ public class Gift extends Discount {
     }
 
     private void addMenu() {
-        menu.put(Menu.CHAMPAGNE, 1);
+        giftMenu.put(Menu.CHAMPAGNE, 1);
     }
 }

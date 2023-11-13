@@ -3,9 +3,7 @@ package christmas.domain.discount;
 import static christmas.domain.Menu.Type.*;
 
 import christmas.domain.Menu;
-import christmas.domain.Menu.Type;
 import christmas.domain.Order;
-import christmas.domain.discount.Discount;
 import java.util.Map.Entry;
 
 public class Weekday extends Discount {
@@ -23,7 +21,7 @@ public class Weekday extends Discount {
                 if(menu.getType() == DESERT) {
                     countDesert += element.getValue();
                 }
-            }
+            } // order로 옮기기
             save(2023 * countDesert);
         }
     }

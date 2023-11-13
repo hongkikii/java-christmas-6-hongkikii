@@ -1,5 +1,7 @@
 package christmas.view;
 
+import static christmas.constant.Constants.OutputView.*;
+
 import christmas.domain.Badge;
 import christmas.domain.discount.Discount;
 import christmas.domain.Menu;
@@ -9,16 +11,17 @@ import christmas.domain.discount.Gift;
 import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 public class OutputView {
 
     public void printHeader(int date) {
-        System.out.println("12월 " + date + "일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!");
+        System.out.println(HEADER_FRONT + date + HEADER_BACK);
         System.out.println();
     }
 
     public void printResult(Order order, Discounts discounts) {
-        printMenu(order);
+        printOrderMenu(order);
         printTotalPrice(order.getTotalPrice());
         printGiftMenu(discounts.findGift());
         printBenefitList(discounts.get());
@@ -27,79 +30,83 @@ public class OutputView {
         printBadge(discounts.getBadge());
     }
 
-    private void printMenu(Order order) {
-        System.out.println("<주문 메뉴>");
+    private void printOrderMenu(Order order) {
+        System.out.println(ORDER_MENU);
         Map<Menu, Integer> orders = order.get();
-        for (Map.Entry<Menu, Integer> entry : orders.entrySet()) {
-            Menu menu = entry.getKey();
-            Integer quantity = entry.getValue();
-            System.out.println(menu.getName() + " " + quantity + "개");
-        }
+        printMenu(orders);
         System.out.println();
     }
 
     private void printTotalPrice(int totalPrice) {
-        System.out.println("<할인 전 총주문 금액>");
-        DecimalFormat decimalFormat = new DecimalFormat("###,###");
-        String formattedPrice = decimalFormat.format(totalPrice);
-        System.out.println(formattedPrice +"원");
+        System.out.println(TOTAL_PRICE);
+        String formattedPrice = getFormattedPrice(totalPrice);
+        System.out.println(formattedPrice + WON);
         System.out.println();
     }
 
     private void printGiftMenu(Gift gift) {
-        System.out.println("<증정 메뉴>");
-        Map<Menu, Integer> giftMenu = gift.getMenu();
-        for (Map.Entry<Menu, Integer> entry : giftMenu.entrySet()) {
-            Menu menu = entry.getKey();
-            Integer number = entry.getValue();
-            System.out.println(menu.getName() + " " + number + "개");
-        }
-        if (giftMenu.size() == 0) {
-            System.out.println("없음");
+        System.out.println(GIFT_MENU);
+        Map<Menu, Integer> gifts = gift.get();
+        printMenu(gifts);
+        if (gifts.isEmpty()) {
+            System.out.println(NONE);
         }
         System.out.println();
     }
 
     private void printBenefitList(List<Discount> discounts) {
-        System.out.println("<혜택 내역>");
-        int totalDiscountPrice = 0;
-        for (Discount discount : discounts) {
-            Integer discountPrice = discount.getPrice();
-            if(discountPrice != 0) {
-                System.out.print(discount.getName() + ": ");
-                DecimalFormat decimalFormat = new DecimalFormat("###,###");
-                String formattedPrice = decimalFormat.format(discount.getPrice());
-                System.out.println("-" + formattedPrice + "원");
-                totalDiscountPrice += discountPrice;
-            }
-        }
-        if (totalDiscountPrice == 0) {
-            System.out.println("없음");
+        System.out.println(BENEFIT_LIST);
+        int totalDiscountPrice = printDiscount(discounts);
+        if (totalDiscountPrice == ZERO) {
+            System.out.println(NONE);
         }
         System.out.println();
     }
 
     private void printBenefitPrice(int benefitPrice) {
-        System.out.println("<총혜택 금액>");
-        DecimalFormat decimalFormat = new DecimalFormat("###,###");
-        String formattedPrice = decimalFormat.format(benefitPrice);
-        if (!formattedPrice.equals("0")) {
-            formattedPrice = "-" + formattedPrice;
+        System.out.println(BENEFIT_PRICE);
+        String formattedPrice = getFormattedPrice(benefitPrice);
+        if (benefitPrice != ZERO) {
+            formattedPrice = MINUS + formattedPrice;
         }
-        System.out.println(formattedPrice + "원");
+        System.out.println(formattedPrice + WON);
         System.out.println();
     }
 
     private void printAmountOfPayment(int amountOfPayment) {
-        System.out.println("<할인 후 예상 결제 금액>");
-        DecimalFormat decimalFormat = new DecimalFormat("###,###");
-        String formattedPrice = decimalFormat.format(amountOfPayment);
-        System.out.println(formattedPrice + "원");
+        System.out.println(PAYMENT_PRICE);
+        String formattedPrice = getFormattedPrice(amountOfPayment);
+        System.out.println(formattedPrice + WON);
         System.out.println();
     }
 
     private void printBadge(Badge badge) {
-        System.out.println("<12월 이벤트 배지>");
+        System.out.println(BADGE);
         System.out.println(badge.getName());
+    }
+
+    private String getFormattedPrice(int price) {
+        DecimalFormat decimalFormat = new DecimalFormat(WON_FORMAT);
+        String formattedPrice = decimalFormat.format(price);
+        return formattedPrice;
+    }
+
+    private void printMenu(Map<Menu, Integer> map) {
+        map.forEach((menu, count)
+                -> System.out.println(menu.getName() + SPACING + count + MENU_COUNT_UNIT));
+    }
+
+    private int printDiscount(List<Discount> discounts) {
+        int totalDiscountPrice = ZERO;
+        for (Discount discount : discounts) {
+            Integer discountPrice = discount.getPrice();
+            if(discountPrice != ZERO) {
+                System.out.print(discount.getName() + COLON);
+                String formattedPrice = getFormattedPrice(discount.getPrice());
+                System.out.println(MINUS + formattedPrice + WON);
+                totalDiscountPrice += discountPrice;
+            }
+        }
+        return totalDiscountPrice;
     }
 }
