@@ -5,8 +5,8 @@ import christmas.domain.discount.Discount;
 
 public class Special extends Discount {
 
-    public Special(String name) {
-        super(name);
+    public Special() {
+        super("특별 할인");
     }
 
     @Override

@@ -9,8 +9,8 @@ import java.util.Map.Entry;
 public class Gift extends Discount {
     private Map<Menu, Integer> menu;
 
-    public Gift(String name) {
-        super(name);
+    public Gift() {
+        super("증정 이벤트");
         this.menu = new HashMap<>();
     }
 

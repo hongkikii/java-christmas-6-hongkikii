@@ -18,6 +18,11 @@ public class OutputView {
         System.out.println();
     }
 
+    public void printOrder(Order order) {
+        printMenu(order);
+        printTotalPrice(order.getTotalPrice());
+    }
+
     public void printMenu(Order order) {
         System.out.println("<주문 메뉴>");
         Map<Menu, Integer> orders = order.get();

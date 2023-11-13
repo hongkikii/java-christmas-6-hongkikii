@@ -1,6 +1,8 @@
 package christmas;
 
 
+import static christmas.domain.Badge.*;
+
 import christmas.domain.Badge;
 import christmas.domain.Order;
 import christmas.domain.discount.DDay;
@@ -8,66 +10,78 @@ import christmas.domain.discount.Discount;
 import christmas.domain.discount.Gift;
 import christmas.domain.discount.Special;
 import christmas.domain.discount.Weekday;
-import christmas.domain.discount.Weekend;
 import christmas.view.InputView;
 import christmas.view.OutputView;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 public class Application {
+    private static final InputView inputView = new InputView();
+    private static final OutputView outputView = new OutputView();
+    private static Integer date = 0;
+    private static Order order = new Order();
+    private static List<Discount> discounts = new ArrayList<>();
+
     public static void main(String[] args) {
         // TODO: 프로그램 구현
-        InputView inputView = new InputView();
-        inputView.introduce();
-        inputView.readDate();
-        inputView.readOrder();
+        saveInput();
+        getDiscount();
+        showResult();
+    }
 
-        OutputView outputView = new OutputView();
-        outputView.printHeader(inputView.getDate());
+    private static void saveInput() {
+        inputView.run();
+        date = inputView.getDate();
+        order = inputView.getOrder();
+    }
 
-        Order order = inputView.getOrder();
-        outputView.printMenu(order);
+    private static void getDiscount() {
+        saveDiscount(new DDay(), new Weekday(), new Special(), new Gift());
+        applyDiscount();
+    }
 
-        outputView.printTotalPrice(order.getTotalPrice());
+    private static void saveDiscount(Discount... discount) {
+        Arrays.stream(discount).forEach(discounts::add);
+    }
 
-        List<Discount> discounts = new ArrayList<>();
-
-        DDay dDay = new DDay("크리스마스 디데이 할인");
-        discounts.add(dDay);
-
-        Weekday weekday = new Weekday("평일 할인");
-        discounts.add(weekday);
-
-        Weekend weekend = new Weekend("주말 할인");
-        discounts.add(weekend);
-
-        Special special = new Special("특별 할인");
-        discounts.add(special);
-
-        Gift gift = new Gift("증정 이벤트");
-        discounts.add(gift);
-
+    private static void applyDiscount() {
         if (order.getEventApply()) {
-            dDay.calculate(inputView.getDate(), order);
-            weekday.calculate(inputView.getDate(), order);
-            weekend.calculate(inputView.getDate(), order);
-            special.calculate(inputView.getDate(), order);
-            gift.calculate(inputView.getDate(), order);
+            discounts.stream()
+                    .forEach(discount -> discount.calculate(date, order));
         }
+    }
 
+    private static void showResult() {
+        Gift gift = findGift();
+        Integer benefitPrice = getBenefitPrice();
+        Integer amountOfPayment = order.getTotalPrice() - benefitPrice + gift.getPrice();
+
+        outputView.printHeader(date);
+        outputView.printOrder(order);
         outputView.printGiftMenu(gift);
         outputView.printBenefitList(discounts);
+        outputView.printBenefitPrice(benefitPrice);
+        outputView.printAmountOfPayment(amountOfPayment);
+        outputView.printBadge(getBadge(benefitPrice));
+    }
 
+    private static Gift findGift() {
+        Optional<Discount> gift = discounts.stream()
+                .filter(discount -> discount instanceof Gift)
+                .findFirst();
+        if (gift.isEmpty()) {
+            throw new IllegalArgumentException("[ERROR] 증정 메뉴가 저장되지 않았습니다.");
+        }
+        return (Gift) gift.get();
+    }
+
+    private static Integer getBenefitPrice() {
         int benefitPrice = 0;
         for (Discount discount : discounts) {
             benefitPrice += discount.getPrice();
         }
-        outputView.printBenefitPrice(benefitPrice);
-
-        int amountOfPayment = order.getTotalPrice() - benefitPrice + gift.getPrice();
-        outputView.printAmountOfPayment(amountOfPayment);
-
-        Badge badge = Badge.getBadge(benefitPrice);
-        outputView.printBadge(badge);
+        return benefitPrice;
     }
 }

@@ -10,8 +10,8 @@ import java.util.Map.Entry;
 
 public class Weekday extends Discount {
 
-    public Weekday(String name) {
-        super(name);
+    public Weekday() {
+        super("평일 할인");
     }
 
     @Override

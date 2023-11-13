@@ -4,8 +4,8 @@ import christmas.domain.Order;
 
 public class DDay extends Discount {
 
-    public DDay(String name) {
-        super(name);
+    public DDay() {
+        super("크리스마스 디데이 할인");
     }
 
     @Override

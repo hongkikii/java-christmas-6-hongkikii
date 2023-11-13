@@ -5,8 +5,8 @@ import christmas.domain.discount.Discount;
 
 public class Weekend extends Discount {
 
-    public Weekend(String name) {
-        super(name);
+    public Weekend() {
+        super("주말 할인");
     }
 
     @Override
