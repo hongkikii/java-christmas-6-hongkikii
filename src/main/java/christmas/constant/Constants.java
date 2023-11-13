@@ -5,7 +5,7 @@ public class Constants {
     public class Common {
         public static final String MENU_AND_NUMBER_SPLIT = "-";
         public static final String ORDER_SPLIT = ",";
-
+        public static final Integer ZERO = 0;
         public static final Integer MAX_ORDER_COUNT = 20;
     }
 
@@ -42,8 +42,6 @@ public class Constants {
         public static final String NONE = "없음";
         public static final String MINUS = "-";
         public static final String COLON = ": ";
-
-        public static final Integer ZERO = 0;
     }
 
     public class Order {

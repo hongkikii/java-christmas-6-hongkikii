@@ -1,5 +1,7 @@
 package christmas.domain.discount;
 
+import static christmas.constant.Constants.Common.*;
+
 import christmas.domain.Order;
 
 public abstract class Discount {
@@ -8,7 +10,7 @@ public abstract class Discount {
 
     public Discount(String name) {
         this.name = name;
-        this.price = 0;
+        this.price = ZERO;
     }
 
     public String getName() {
