@@ -3,6 +3,9 @@ package christmas.domain;
 import static christmas.constant.Constants.Badge.*;
 import static christmas.constant.Constants.Common.*;
 
+import java.util.Arrays;
+import java.util.Comparator;
+
 public enum Badge {
     STAR(STAR_NAME, STAR_MIN_PRICE),
     TREE(TREE_NAME, TREE_MIN_PRICE),
@@ -11,6 +14,7 @@ public enum Badge {
 
     private String name;
     private Integer minPrice;
+    private static final Comparator<Badge> BADGE_BY_PRICE = Comparator.comparing(Badge::getMinPrice).reversed();
 
     Badge(String name, Integer minPrice) {
         this.name = name;
@@ -21,16 +25,15 @@ public enum Badge {
         return this.name;
     }
 
+    private Integer getMinPrice() {
+        return this.minPrice;
+    }
+
     public static Badge getBadge(Integer benefitPrice) {
-        if (benefitPrice >= STAR.minPrice && benefitPrice < TREE.minPrice) {
-            return STAR;
-        }
-        if (benefitPrice >= TREE.minPrice && benefitPrice < SANTA.minPrice) {
-            return TREE;
-        }
-        if (benefitPrice >= SANTA.minPrice) {
-            return SANTA;
-        }
-        return NONE;
+        return Arrays.stream(Badge.values())
+                .sorted(BADGE_BY_PRICE)
+                .filter(badge -> benefitPrice >= badge.minPrice)
+                .findFirst()
+                .orElse(NONE);
     }
 }
