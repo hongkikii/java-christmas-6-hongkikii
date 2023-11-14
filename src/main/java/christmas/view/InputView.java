@@ -26,6 +26,7 @@ public class InputView {
         introduce();
         readDate();
         readOrder();
+        Console.close();
     }
 
     public int getDate() {
