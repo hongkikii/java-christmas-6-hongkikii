@@ -58,6 +58,7 @@ public class Constants {
         public static final Integer DDAY = 25;
         public static final Integer BASE_DISCOUNT = 1000;
         public static final Integer ADD_DISCOUNT = 100;
+        public static final Integer ONE = 1;
     }
 
     public class Gift {
