@@ -28,7 +28,7 @@ public class Order {
     public void save(String orderLine) {
         String[] orders = orderLine.split(ORDER_SPLIT);
         for (String element : orders) {
-            String[] menuAndNumber = element.split(MENU_AND_NUMBER_SPLIT);
+            String[] menuAndNumber = element.split(MENU_AND_COUNT_SPLIT);
             String orderMenu = menuAndNumber[0];
             String orderNumber = menuAndNumber[1];
             Menu menu = Menu.findMenu(orderMenu);

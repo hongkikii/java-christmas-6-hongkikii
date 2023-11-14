@@ -3,7 +3,7 @@ package christmas.constant;
 public class Constants {
 
     public class Common {
-        public static final String MENU_AND_NUMBER_SPLIT = "-";
+        public static final String MENU_AND_COUNT_SPLIT = "-";
         public static final String ORDER_SPLIT = ",";
         public static final String X = "없음";
 
@@ -31,6 +31,9 @@ public class Constants {
         public static final Integer DECEMBER_START = 1;
         public static final Integer DECEMBER_END = 31;
         public static final Integer MIN_ORDER_COUNT = 1;
+
+        public static final Integer MENU_NAME_INDEX = 0;
+        public static final Integer MENU_COUNT_INDEX = 1;
     }
 
     public class OutputView {
@@ -85,6 +88,19 @@ public class Constants {
         public static final String ZERO_COLA_NAME = "제로콜라";
         public static final String RED_WINE_NAME = "레드와인";
         public static final String CHAMPAGNE_NAME = "샴페인";
+
+        public static final Integer MUSHROOM_SOUP_PRICE = 6000;
+        public static final Integer TAPAS_PRICE = 5500;
+        public static final Integer CAESAR_SALAD_PRICE = 8000;
+        public static final Integer T_BONE_STAKE_PRICE = 55000;
+        public static final Integer BBQ_RIBS_PRICE = 54000;
+        public static final Integer SEAFOOD_PASTA_PRICE = 35000;
+        public static final Integer CHRISTMAS_PASTA_PRICE = 25000;
+        public static final Integer CHOCOLATE_CAKE_PRICE = 15000;
+        public static final Integer ICE_CREAM_PRICE = 5000;
+        public static final Integer ZERO_COLA_PRICE = 3000;
+        public static final Integer RED_WINE_PRICE = 60000;
+        public static final Integer CHAMPAGNE_PRICE = 25000;
     }
 
     public class Badge {

@@ -18,7 +18,7 @@ public class InputView {
     private Order order;
 
     public InputView() {
-        this.date = 0;
+        this.date = ZERO;
         this.order = new Order();
     }
 
@@ -122,7 +122,7 @@ public class InputView {
 
     private void checkNoMenu(List<String> orders) {
         if (orders.stream()
-                .map(order -> order.split(MENU_AND_NUMBER_SPLIT)[0])
+                .map(order -> order.split(MENU_AND_COUNT_SPLIT)[MENU_NAME_INDEX])
                 .allMatch(this::contain)) {
             return;
         }
@@ -136,8 +136,8 @@ public class InputView {
 
     private void checkCount(List<String> orders) {
         if (orders.stream()
-                .map(order -> Integer.parseInt(order.split(MENU_AND_NUMBER_SPLIT)[1]))
-                .allMatch(number -> number >= MIN_ORDER_COUNT && number <= MAX_ORDER_COUNT)) {
+                .map(order -> Integer.parseInt(order.split(MENU_AND_COUNT_SPLIT)[MENU_COUNT_INDEX]))
+                .allMatch(count -> count >= MIN_ORDER_COUNT && count <= MAX_ORDER_COUNT)) {
             return;
         }
         throw new IllegalArgumentException(ERROR_ORDER);
@@ -145,7 +145,7 @@ public class InputView {
 
     private void checkDuplicateMenu(List<String> orders) {
         List<String> noDuplicateMenu = orders.stream()
-                .map(order -> order.split(MENU_AND_NUMBER_SPLIT)[0])
+                .map(order -> order.split(MENU_AND_COUNT_SPLIT)[MENU_NAME_INDEX])
                 .distinct()
                 .collect(Collectors.toList());
 
