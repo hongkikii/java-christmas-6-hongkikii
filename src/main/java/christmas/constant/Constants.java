@@ -90,5 +90,9 @@ public class Constants {
         public static final String STAR_NAME = "별";
         public static final String TREE_NAME = "트리";
         public static final String SANTA_NAME = "산타";
+
+        public static final Integer STAR_MIN_PRICE = 5000;
+        public static final Integer TREE_MIN_PRICE = 10000;
+        public static final Integer SANTA_MIN_PRICE = 20000;
     }
 }
