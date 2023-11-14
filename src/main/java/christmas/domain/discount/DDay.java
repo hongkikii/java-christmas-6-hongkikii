@@ -7,7 +7,7 @@ import christmas.domain.Order;
 public class DDay extends Discount {
 
     public DDay() {
-        super(DDAY_NAME);
+        super(DDAY_DISCOUNT_NAME);
     }
 
     @Override

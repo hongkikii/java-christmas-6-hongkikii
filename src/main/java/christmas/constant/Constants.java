@@ -53,22 +53,22 @@ public class Constants {
         public static final String COLON = ": ";
     }
 
-    public class Order {
-        public static final Integer MIN_EVENT_APPLY_PRICE = 10000;
-    }
-
     public class DDay {
-        public static final String DDAY_NAME = "크리스마스 디데이 할인";
+        public static final String DDAY_DISCOUNT_NAME = "크리스마스 디데이 할인";
         public static final Integer DDAY = 25;
         public static final Integer BASE_DISCOUNT = 1000;
         public static final Integer ADD_DISCOUNT = 100;
     }
 
     public class Gift {
-        public static final String GIFT_NAME = "증정 이벤트";
-        public static final Integer GIFT_CHAMPAGNE_NUMBER = 1;
+        public static final String GIFT_DISCOUNT_NAME = "증정 이벤트";
+        public static final Integer GIFT_CHAMPAGNE_COUNT = 1;
         public static final Integer MIN_GIFT_PRICE = 120000;
         public static final Integer CHAMPAGNE_PRICE = 25000;
+    }
+
+    public class Order {
+        public static final Integer MIN_EVENT_APPLY_PRICE = 10000;
     }
 
     public class Menu {

@@ -11,7 +11,7 @@ public class Gift extends Discount {
     private Map<Menu, Integer> giftMenu;
 
     public Gift() {
-        super(GIFT_NAME);
+        super(GIFT_DISCOUNT_NAME);
         this.giftMenu = new HashMap<>();
     }
 
@@ -33,7 +33,7 @@ public class Gift extends Discount {
     }
 
     private void addMenu() {
-        giftMenu.put(Menu.CHAMPAGNE, GIFT_CHAMPAGNE_NUMBER);
+        giftMenu.put(Menu.CHAMPAGNE, GIFT_CHAMPAGNE_COUNT);
         save(CHAMPAGNE_PRICE);
     }
 }
