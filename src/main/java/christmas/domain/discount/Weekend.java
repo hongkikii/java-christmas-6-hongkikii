@@ -5,7 +5,6 @@ import static christmas.domain.DayInformation.WeekType.*;
 import static christmas.domain.DayInformation.getDayInformation;
 
 import christmas.domain.DayInformation;
-import christmas.domain.DayInformation.WeekType;
 import christmas.domain.Order;
 
 public class Weekend extends Discount {
