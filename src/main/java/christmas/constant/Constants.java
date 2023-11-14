@@ -71,6 +71,11 @@ public class Constants {
         public static final Integer CHAMPAGNE_PRICE = 25000;
     }
 
+    public class Special {
+        public static final String SPECIAL_DISCOUNT_NAME = "특별 할인";
+        public static final Integer SPECIAL_BASE_DISCOUNT = 1000;
+    }
+
     public class Weekday {
         public static final String WEEKDAY_DISCOUNT_NAME = "평일 할인";
         public static final Integer WEEKDAY_BASE_DISCOUNT = 2023;

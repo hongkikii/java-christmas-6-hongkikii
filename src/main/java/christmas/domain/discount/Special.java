@@ -1,25 +1,28 @@
 package christmas.domain.discount;
 
+import static christmas.constant.Constants.Special.*;
+import static christmas.domain.DayInformation.*;
+import static christmas.domain.DayInformation.SpecialType.*;
+
+import christmas.domain.DayInformation;
 import christmas.domain.Order;
 
 public class Special extends Discount {
 
     public Special() {
-        super("특별 할인");
+        super(SPECIAL_DISCOUNT_NAME);
     }
 
     @Override
     public void calculate(int date, Order order) {
         if (isSpecial(date)) {
-            save(1000);
+            save(SPECIAL_BASE_DISCOUNT);
         }
     }
 
     private boolean isSpecial(int date) {
-        if (date == 3 || date == 10 || date == 17 || date == 24 || date == 31) {
-            return true;
-        }
-        if (date == 25) {
+        DayInformation dayInformation = getDayInformation(date);
+        if (dayInformation.getSpecialType() == SPECIAL) {
             return true;
         }
         return false;
