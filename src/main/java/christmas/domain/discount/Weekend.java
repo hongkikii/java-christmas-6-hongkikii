@@ -1,6 +1,7 @@
 package christmas.domain.discount;
 
 import static christmas.constant.Constants.Weekend.*;
+import static christmas.domain.DayInformation.WeekType.*;
 import static christmas.domain.DayInformation.getDayInformation;
 
 import christmas.domain.DayInformation;
@@ -23,7 +24,7 @@ public class Weekend extends Discount {
 
     private boolean isWeekend(int date) {
         DayInformation dayInformation = getDayInformation(date);
-        if (dayInformation.getWeekType() == WeekType.WEEKEND) {
+        if (dayInformation.getWeekType() == WEEKEND) {
             return true;
         }
         return false;
