@@ -1,7 +1,10 @@
 package christmas.domain.discount;
 
 import static christmas.constant.Constants.Common.*;
+import static christmas.domain.DayInformation.getDayInformation;
 
+import christmas.domain.DayInformation;
+import christmas.domain.DayInformation.WeekType;
 import christmas.domain.Order;
 
 public abstract class Discount {
@@ -27,4 +30,11 @@ public abstract class Discount {
 
     public abstract void calculate(int date, Order order);
 
+    protected Boolean isWeekType(int date, WeekType weekType) {
+        DayInformation dayInformation = getDayInformation(date);
+        if (dayInformation.getWeekType() == weekType) {
+            return true;
+        }
+        return false;
+    }
 }
