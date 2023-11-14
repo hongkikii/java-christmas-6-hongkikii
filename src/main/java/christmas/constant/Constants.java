@@ -5,8 +5,18 @@ public class Constants {
     public class Common {
         public static final String MENU_AND_NUMBER_SPLIT = "-";
         public static final String ORDER_SPLIT = ",";
+        public static final String X = "없음";
+
         public static final Integer ZERO = 0;
         public static final Integer MAX_ORDER_COUNT = 20;
+    }
+
+    public class Error {
+        public static final String ERROR_DATE = "[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.";
+        public static final String ERROR_ORDER = "[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.";
+
+        public static final String ERROR_ORDER_ONLY_DRINK = "[ERROR] 음료만 주문할 수 없습니다. 다시 입력해 주세요.";
+        public static final String ERROR_ORDER_EXCEED_MAX = "[ERROR] 주문 수량은 20개가 최대입니다. 다시 입력해 주세요.";
     }
 
     public class InputView {
@@ -39,7 +49,6 @@ public class Constants {
         public static final String MENU_COUNT_UNIT = "개";
         public static final String WON_FORMAT = "###,###";
         public static final String WON = "원";
-        public static final String NONE = "없음";
         public static final String MINUS = "-";
         public static final String COLON = ": ";
     }
@@ -77,11 +86,9 @@ public class Constants {
         public static final String CHAMPAGNE_NAME = "샴페인";
     }
 
-    public class Error {
-        public static final String ERROR_DATE = "[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.";
-        public static final String ERROR_ORDER = "[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.";
-
-        public static final String ERROR_ORDER_ONLY_DRINK = "[ERROR] 음료만 주문할 수 없습니다. 다시 입력해 주세요.";
-        public static final String ERROR_ORDER_EXCEED_MAX = "[ERROR] 주문 수량은 20개가 최대입니다. 다시 입력해 주세요.";
+    public class Badge {
+        public static final String STAR_NAME = "별";
+        public static final String TREE_NAME = "트리";
+        public static final String SANTA_NAME = "산타";
     }
 }

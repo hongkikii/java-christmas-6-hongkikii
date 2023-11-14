@@ -49,7 +49,7 @@ public class OutputView {
         Map<Menu, Integer> gifts = gift.get();
         printMenu(gifts);
         if (gifts.isEmpty()) {
-            System.out.println(NONE);
+            System.out.println(X);
         }
         System.out.println();
     }
@@ -58,7 +58,7 @@ public class OutputView {
         System.out.println(BENEFIT_LIST);
         int totalDiscountPrice = printDiscount(discounts);
         if (totalDiscountPrice == ZERO) {
-            System.out.println(NONE);
+            System.out.println(X);
         }
         System.out.println();
     }

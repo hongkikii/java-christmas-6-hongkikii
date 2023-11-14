@@ -1,10 +1,13 @@
 package christmas.domain;
 
+import static christmas.constant.Constants.Badge.*;
+import static christmas.constant.Constants.Common.X;
+
 public enum Badge {
-    STAR("별", 5000),
-    TREE("트리", 10000),
-    SANTA("산타", 20000),
-    NONE("없음", 0);
+    STAR(STAR_NAME, 5000),
+    TREE(TREE_NAME, 10000),
+    SANTA(SANTA_NAME, 20000),
+    NONE(X, 0);
 
     private String name;
     private Integer minPrice;
