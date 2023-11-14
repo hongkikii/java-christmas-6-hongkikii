@@ -11,11 +11,9 @@ import java.util.Map;
 
 public class Order {
     private final Map<Menu, Integer> order;
-    private boolean eventApply;
 
     public Order() {
         this.order = new HashMap<>();
-        this.eventApply = false;
     }
 
     public Map<Menu, Integer> get() {
@@ -23,7 +21,7 @@ public class Order {
     }
 
     public Boolean getEventApply() {
-        return this.eventApply;
+        return getTotalPrice() >= MIN_EVENT_APPLY_PRICE;
     }
 
     public void save(String orderLine) {
@@ -54,15 +52,8 @@ public class Order {
     }
 
     private void validate() {
-        checkMinEventApplyPrice();
         checkOrderOnlyDrink();
         checkMaxOrderCount();
-    }
-
-    private void checkMinEventApplyPrice() {
-        if (getTotalPrice() >= MIN_EVENT_APPLY_PRICE) {
-            this.eventApply = true;
-        }
     }
 
     private void checkOrderOnlyDrink() {
