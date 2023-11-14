@@ -4,6 +4,7 @@ import static christmas.constant.Constants.Common.*;
 import static christmas.constant.Constants.Error.*;
 import static christmas.constant.Constants.Order.*;
 import static christmas.domain.Menu.Type.*;
+import static java.util.Map.*;
 
 import christmas.domain.Menu.Type;
 import java.util.HashMap;
@@ -52,13 +53,13 @@ public class Order {
     }
 
     private void validate() {
-        checkOrderOnlyDrink();
+        checkOnlyDrink();
         checkMaxOrderCount();
     }
 
-    private void checkOrderOnlyDrink() {
+    private void checkOnlyDrink() {
         if (order.entrySet().stream()
-                .map(Map.Entry::getKey)
+                .map(Entry::getKey)
                 .noneMatch(menu -> menu.getType() != DRINK)) {
             throw new IllegalArgumentException(ERROR_ORDER_ONLY_DRINK);
         }
@@ -75,7 +76,7 @@ public class Order {
 
     private int countMenu(Type type) {
         return (int) order.entrySet().stream()
-                .map(Map.Entry::getKey)
+                .map(Entry::getKey)
                 .filter(menu -> menu.getType() == type)
                 .count();
     }
