@@ -1,22 +1,23 @@
 package christmas.domain;
 
+import static christmas.constant.Constants.Menu.*;
 import static christmas.domain.Menu.Type.*;
 
 import java.util.Arrays;
 
 public enum Menu {
-    SOUP("양송이수프", APPETIZER, 6000),
-    TAPAS("타파스", APPETIZER, 5500),
-    SALAD("시저샐러드", APPETIZER, 8000),
-    STAKE("티본스테이크", MAIN, 55000),
-    RIB("바비큐립", MAIN, 54000),
-    SEAFOOD_PASTA("해산물파스타", MAIN, 35000),
-    CHRISTMAS_PASTA("크리스마스파스타", MAIN, 25000),
-    CAKE("초코케이크", DESERT, 15000),
-    ICE_CREAM("아이스크림", DESERT, 5000),
-    COLA("제로콜라", DRINK, 3000),
-    WINE("레드와인", DRINK, 60000),
-    CHAMPAGNE("샴페인", DRINK, 25000);
+    MUSHROOM_SOUP(MUSHROOM_SOUP_NAME, APPETIZER, 6000),
+    TAPAS(TAPAS_NAME, APPETIZER, 5500),
+    CAESAR_SALAD(CAESAR_SALAD_NAME, APPETIZER, 8000),
+    T_BONE_STAKE(T_BONE_STAKE_NAME, MAIN, 55000),
+    BBQ_RIBS(BBQ_RIBS_NAME, MAIN, 54000),
+    SEAFOOD_PASTA(SEAFOOD_PASTA_NAME, MAIN, 35000),
+    CHRISTMAS_PASTA(CHRISTMAS_PASTA_NAME, MAIN, 25000),
+    CHOCOLATE_CAKE(CHOCOLATE_CAKE_NAME, DESERT, 15000),
+    ICE_CREAM(ICE_CREAM_NAME, DESERT, 5000),
+    ZERO_COLA(ZERO_COLA_NAME, DRINK, 3000),
+    RED_WINE(RED_WINE_NAME, DRINK, 60000),
+    CHAMPAGNE(CHAMPAGNE_NAME, DRINK, 25000);
 
     private String name;
     private Type type;

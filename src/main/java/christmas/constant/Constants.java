@@ -62,6 +62,21 @@ public class Constants {
         public static final Integer CHAMPAGNE_PRICE = 25000;
     }
 
+    public class Menu {
+        public static final String MUSHROOM_SOUP_NAME = "양송이수프";
+        public static final String TAPAS_NAME = "타파스";
+        public static final String CAESAR_SALAD_NAME = "시저샐러드";
+        public static final String T_BONE_STAKE_NAME = "티본스테이크";
+        public static final String BBQ_RIBS_NAME = "바비큐립";
+        public static final String SEAFOOD_PASTA_NAME = "해산물파스타";
+        public static final String CHRISTMAS_PASTA_NAME = "크리스마스파스타";
+        public static final String CHOCOLATE_CAKE_NAME = "초코케이크";
+        public static final String ICE_CREAM_NAME = "아이스크림";
+        public static final String ZERO_COLA_NAME = "제로콜라";
+        public static final String RED_WINE_NAME = "레드와인";
+        public static final String CHAMPAGNE_NAME = "샴페인";
+    }
+
     public class Error {
         public static final String ERROR_DATE = "[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.";
         public static final String ERROR_ORDER = "[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.";
