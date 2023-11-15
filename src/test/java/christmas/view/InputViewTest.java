@@ -74,6 +74,8 @@ class InputViewTest extends NsTest {
     void saveNoCountMenu() {
         executeAbnormalNumberMenu("a");
         executeAbnormalNumberMenu("2a");
+        executeAbnormalNumberMenu("-");
+        executeAbnormalNumberMenu("타파스");
     }
 
     @DisplayName("메뉴의 개수가 1 이상의 숫자가 아닌 경우 예외가 발생한다.")
