@@ -8,6 +8,7 @@ import static christmas.domain.Menu.Type.*;
 import christmas.domain.Menu.Type;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Map.Entry;
 
 public class Order {
     private final Map<Menu, Integer> order;
@@ -52,9 +53,10 @@ public class Order {
     }
 
     private int countMenu(Type type) {
-        return (int) order.keySet().stream()
-                .filter(menu -> menu.getType().equals(type))
-                .count();
+        return order.entrySet().stream()
+                .filter(entry -> entry.getKey().getType() == type)
+                .mapToInt(Map.Entry::getValue)
+                .sum();
     }
 
     private void validate() {
