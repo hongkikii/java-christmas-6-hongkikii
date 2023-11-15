@@ -17,9 +17,19 @@ class DDayTest {
         order.save(orderLine);
     }
 
-    @DisplayName("이벤트 기간은 1~25일 사이이다.")
+    @DisplayName("1~25일 동안 이벤트를 적용한다.")
     @Test
     void checkEventPeriod() {
+        DDay dDay1 = applyDDayDiscount(1);
+        assertThat(dDay1.getPrice()).isNotEqualTo(0);
+
+        DDay dDay25 = applyDDayDiscount(25);
+        assertThat(dDay25.getPrice()).isNotEqualTo(0);
+    }
+
+    @DisplayName("26~31일은 이벤트가 적용되지 않는다.")
+    @Test
+    void checkNotEventPeroid() {
         DDay dDay26 = applyDDayDiscount(26);
         assertThat(dDay26.getPrice()).isEqualTo(0);
     }
