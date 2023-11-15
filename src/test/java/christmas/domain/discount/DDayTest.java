@@ -26,7 +26,7 @@ class DDayTest {
 
     @DisplayName("1000원부터 시작하여 25일까지 매일 할인 금액이 100원씩 증가한다.")
     @Test
-    void checkEventPeroid() {
+    void checkDiscount() {
         DDay dDay1 = applyDDayDiscount(1);
         assertThat(dDay1.getPrice()).isEqualTo(1000);
 
