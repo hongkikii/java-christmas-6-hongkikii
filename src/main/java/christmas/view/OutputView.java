@@ -10,9 +10,7 @@ import christmas.domain.Order;
 import christmas.domain.discount.Discounts;
 import christmas.domain.discount.Gift;
 import java.text.DecimalFormat;
-import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 public class OutputView {
 
@@ -25,28 +23,28 @@ public class OutputView {
         printOrderMenu(order);
         printTotalPrice(order.getTotalPrice());
         printGiftMenu(discounts.findGift());
-        printBenefitList(discounts.get());
-        printBenefitPrice(discounts.getBenefitPrice());
+        printBenefitList(discounts);
+        printBenefitPrice(discounts.getPrice());
         printAmountOfPayment(discounts.getAmountOfPayment(order));
         printBadge(discounts.getBadge());
     }
 
     private void printOrderMenu(Order order) {
-        System.out.println(ORDER_MENU);
+        System.out.println(ALERT_ORDER_MENU);
         Map<Menu, Integer> orders = order.get();
         printMenu(orders);
         System.out.println();
     }
 
     private void printTotalPrice(int totalPrice) {
-        System.out.println(TOTAL_PRICE);
+        System.out.println(ALERT_TOTAL_PRICE);
         String formattedPrice = getFormattedPrice(totalPrice);
         System.out.println(formattedPrice + WON);
         System.out.println();
     }
 
     private void printGiftMenu(Gift gift) {
-        System.out.println(GIFT_MENU);
+        System.out.println(ALERT_GIFT_MENU);
         Map<Menu, Integer> gifts = gift.get();
         printMenu(gifts);
         if (gifts.isEmpty()) {
@@ -55,17 +53,18 @@ public class OutputView {
         System.out.println();
     }
 
-    private void printBenefitList(List<Discount> discounts) {
-        System.out.println(BENEFIT_LIST);
-        int totalDiscountPrice = printDiscount(discounts);
-        if (totalDiscountPrice == ZERO) {
+    private void printBenefitList(Discounts discounts) {
+        System.out.println(ALERT_BENEFIT_LIST);
+        int benefitPrice = discounts.getPrice();
+        printDiscount(discounts);
+        if (benefitPrice == ZERO) {
             System.out.println(X);
         }
         System.out.println();
     }
 
     private void printBenefitPrice(int benefitPrice) {
-        System.out.println(BENEFIT_PRICE);
+        System.out.println(ALERT_BENEFIT_PRICE);
         String formattedPrice = getFormattedPrice(benefitPrice);
         if (benefitPrice != ZERO) {
             formattedPrice = MINUS + formattedPrice;
@@ -75,15 +74,20 @@ public class OutputView {
     }
 
     private void printAmountOfPayment(int amountOfPayment) {
-        System.out.println(PAYMENT_PRICE);
+        System.out.println(ALERT_PAYMENT_PRICE);
         String formattedPrice = getFormattedPrice(amountOfPayment);
         System.out.println(formattedPrice + WON);
         System.out.println();
     }
 
     private void printBadge(Badge badge) {
-        System.out.println(BADGE);
+        System.out.println(ALERT_BADGE);
         System.out.println(badge.getName());
+    }
+
+    private void printMenu(Map<Menu, Integer> map) {
+        map.forEach((menu, count)
+                -> System.out.println(menu.getName() + SPACING + count + MENU_COUNT_UNIT));
     }
 
     private String getFormattedPrice(int price) {
@@ -92,22 +96,14 @@ public class OutputView {
         return formattedPrice;
     }
 
-    private void printMenu(Map<Menu, Integer> map) {
-        map.forEach((menu, count)
-                -> System.out.println(menu.getName() + SPACING + count + MENU_COUNT_UNIT));
-    }
-
-    private int printDiscount(List<Discount> discounts) {
-        int totalDiscountPrice = ZERO;
-        for (Discount discount : discounts) {
+    private void printDiscount(Discounts discounts) {
+        for (Discount discount : discounts.get()) {
             Integer discountPrice = discount.getPrice();
             if(discountPrice != ZERO) {
                 System.out.print(discount.getName() + COLON);
                 String formattedPrice = getFormattedPrice(discount.getPrice());
                 System.out.println(MINUS + formattedPrice + WON);
-                totalDiscountPrice += discountPrice;
             }
         }
-        return totalDiscountPrice;
     }
 }
