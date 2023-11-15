@@ -11,11 +11,10 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
 
 public class InputView {
     private int date;
-    private Order order;
+    private final Order order;
 
     public InputView() {
         this.date = ZERO;
@@ -51,7 +50,7 @@ public class InputView {
         read(ORDER);
     }
 
-    private String read(String type) {
+    private void read(String type) {
         String input;
         while (true) {
             input = Console.readLine();
@@ -63,7 +62,6 @@ public class InputView {
                 System.out.println(e.getMessage());
             }
         }
-        return input;
     }
 
     private void validateInput(String type, String input) {
@@ -105,16 +103,14 @@ public class InputView {
         }
     }
 
-    private int checkBoundary(int date) {
+    private void checkBoundary(int date) {
         if (date < DECEMBER_START || date > DECEMBER_END) {
             throw new IllegalArgumentException(ERROR_DATE);
         }
-        return date;
     }
 
     private void checkForm(String orderLine) {
-        String regex = ORDER_REGEX;
-        Pattern pattern = Pattern.compile(regex);
+        Pattern pattern = Pattern.compile(ORDER_REGEX);
         Matcher matcher = pattern.matcher(orderLine);
         if (!matcher.matches()) {
             throw new IllegalArgumentException(ERROR_ORDER);
@@ -148,7 +144,7 @@ public class InputView {
         List<String> noDuplicateMenu = orders.stream()
                 .map(order -> order.split(MENU_AND_COUNT_SPLIT)[MENU_NAME_INDEX])
                 .distinct()
-                .collect(Collectors.toList());
+                .toList();
 
         if (noDuplicateMenu.size() != orders.size()) {
             throw new IllegalArgumentException(ERROR_ORDER);
