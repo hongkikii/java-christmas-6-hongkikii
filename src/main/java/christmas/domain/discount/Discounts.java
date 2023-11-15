@@ -5,7 +5,7 @@ import static christmas.constant.Constants.Common.*;
 import christmas.domain.Badge;
 import christmas.domain.Order;
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,13 +21,12 @@ public class Discounts {
     }
 
     public void save(Discount... discount) {
-        Arrays.stream(discount).forEach(this.discounts::add);
+        Collections.addAll(this.discounts, discount);
     }
 
     public void apply(int date, Order order) {
         if (order.getEventApply()) {
-            discounts.stream()
-                    .forEach(discount -> discount.calculate(date, order));
+            discounts.forEach(discount -> discount.calculate(date, order));
         }
     }
 
