@@ -39,9 +39,9 @@ public enum DayInformation {
     THIRTY(30, WEEKEND, NON_SPECIAL),
     THIRTY_ONE(31, WEEKDAY, SPECIAL);
 
-    private int date;
-    private WeekType weekType;
-    private SpecialType specialType;
+    private final int date;
+    private final WeekType weekType;
+    private final SpecialType specialType;
 
     DayInformation(int date, WeekType weekType, SpecialType specialType) {
         this.date = date;
