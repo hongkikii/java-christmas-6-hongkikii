@@ -40,13 +40,13 @@ public class Constants {
         public static final String HEADER_FRONT = "12월 ";
         public static final String HEADER_BACK = "일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!";
 
-        public static final String ORDER_MENU = "<주문 메뉴>";
-        public static final String TOTAL_PRICE = "<할인 전 총주문 금액>";
-        public static final String GIFT_MENU = "<증정 메뉴>";
-        public static final String BENEFIT_LIST = "<혜택 내역>";
-        public static final String BENEFIT_PRICE = "<총혜택 금액>";
-        public static final String PAYMENT_PRICE = "<할인 후 예상 결제 금액>";
-        public static final String BADGE = "<12월 이벤트 배지>";
+        public static final String ALERT_ORDER_MENU = "<주문 메뉴>";
+        public static final String ALERT_TOTAL_PRICE = "<할인 전 총주문 금액>";
+        public static final String ALERT_GIFT_MENU = "<증정 메뉴>";
+        public static final String ALERT_BENEFIT_LIST = "<혜택 내역>";
+        public static final String ALERT_BENEFIT_PRICE = "<총혜택 금액>";
+        public static final String ALERT_PAYMENT_PRICE = "<할인 후 예상 결제 금액>";
+        public static final String ALERT_BADGE = "<12월 이벤트 배지>";
 
         public static final String SPACING = " ";
         public static final String MENU_COUNT_UNIT = "개";
