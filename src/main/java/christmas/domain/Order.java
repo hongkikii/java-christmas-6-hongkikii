@@ -8,7 +8,6 @@ import static christmas.domain.Menu.Type.*;
 import christmas.domain.Menu.Type;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Map.Entry;
 
 public class Order {
     private final Map<Menu, Integer> order;
