@@ -20,6 +20,22 @@ public class Discounts {
         return this.discounts;
     }
 
+    public int getPrice() {
+        int benefitPrice = ZERO;
+        for (Discount discount : discounts) {
+            benefitPrice += discount.getPrice();
+        }
+        return benefitPrice;
+    }
+
+    public int getAmountOfPayment(Order order) {
+        return order.getTotalPrice() - getPrice() + findGift().getPrice();
+    }
+
+    public Badge getBadge() {
+        return Badge.getBadge(getPrice());
+    }
+
     public void save(Discount... discount) {
         Collections.addAll(this.discounts, discount);
     }
@@ -30,26 +46,10 @@ public class Discounts {
         }
     }
 
-    public Integer getAmountOfPayment(Order order) {
-        return order.getTotalPrice() - getPrice() + findGift().getPrice();
-    }
-
-    public Integer getPrice() {
-        int benefitPrice = ZERO;
-        for (Discount discount : discounts) {
-            benefitPrice += discount.getPrice();
-        }
-        return benefitPrice;
-    }
-
     public Gift findGift() {
         Optional<Discount> gift = discounts.stream()
                 .filter(discount -> discount instanceof Gift)
                 .findFirst();
         return (Gift) gift.get();
-    }
-
-    public Badge getBadge() {
-        return Badge.getBadge(getPrice());
     }
 }
