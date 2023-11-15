@@ -65,6 +65,7 @@ public class OutputView {
     private void printBenefitPrice(int benefitPrice) {
         System.out.println(ALERT_BENEFIT_PRICE);
         printMinusFormattedPrice(benefitPrice);
+        System.out.println();
     }
 
     private void printAmountOfPayment(int amountOfPayment) {
@@ -101,7 +102,6 @@ public class OutputView {
             formattedPrice = MINUS + formattedPrice;
         }
         System.out.println(formattedPrice + WON);
-        System.out.println();
     }
 
     private void printDiscount(Discounts discounts) {
