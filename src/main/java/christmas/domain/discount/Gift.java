@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Gift extends Discount {
-    private Map<Menu, Integer> giftMenu;
+    private final Map<Menu, Integer> giftMenu;
 
     public Gift() {
         super(GIFT_DISCOUNT_NAME);
