@@ -4,7 +4,6 @@ import static christmas.constant.Constants.DayInformation.*;
 import static christmas.domain.DayInformation.SpecialType.*;
 import static christmas.domain.DayInformation.WeekType.*;
 
-import christmas.constant.Constants;
 import java.util.Arrays;
 
 public enum DayInformation {
