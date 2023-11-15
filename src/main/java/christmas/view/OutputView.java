@@ -76,7 +76,7 @@ public class OutputView {
 
     private void printBadge(Badge badge) {
         System.out.println(ALERT_BADGE);
-        System.out.println(badge.getName());
+        System.out.print(badge.getName());
     }
 
     private void printMenu(Map<Menu, Integer> map) {
