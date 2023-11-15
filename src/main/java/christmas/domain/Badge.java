@@ -25,15 +25,15 @@ public enum Badge {
         return this.name;
     }
 
-    private Integer getMinPrice() {
-        return this.minPrice;
-    }
-
     public static Badge getBadge(Integer benefitPrice) {
         return Arrays.stream(Badge.values())
                 .sorted(BADGE_BY_PRICE)
                 .filter(badge -> benefitPrice >= badge.minPrice)
                 .findFirst()
                 .orElse(NONE);
+    }
+
+    private Integer getMinPrice() {
+        return this.minPrice;
     }
 }
