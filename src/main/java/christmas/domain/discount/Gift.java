@@ -6,6 +6,7 @@ import christmas.domain.Menu;
 import christmas.domain.Order;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Map.Entry;
 
 public class Gift extends Discount {
     private Map<Menu, Integer> giftMenu;
@@ -28,12 +29,11 @@ public class Gift extends Discount {
     @Override
     public void calculate(int date, Order order) {
         if (order.getTotalPrice() > MIN_GIFT_PRICE) {
-            addMenu();
+            add();
         }
     }
 
-    private void addMenu() {
-        giftMenu.put(Menu.CHAMPAGNE, GIFT_CHAMPAGNE_COUNT);
-        save(CHAMPAGNE_PRICE);
+    private void add() {
+        giftMenu.forEach((menu, count) -> save(menu.getPrice() * count));
     }
 }
