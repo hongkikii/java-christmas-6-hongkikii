@@ -31,10 +31,10 @@ public class Discounts {
     }
 
     public Integer getAmountOfPayment(Order order) {
-        return order.getTotalPrice() - getBenefitPrice() + findGift().getPrice();
+        return order.getTotalPrice() - getPrice() + findGift().getPrice();
     }
 
-    public Integer getBenefitPrice() {
+    public Integer getPrice() {
         int benefitPrice = ZERO;
         for (Discount discount : discounts) {
             benefitPrice += discount.getPrice();
@@ -50,6 +50,6 @@ public class Discounts {
     }
 
     public Badge getBadge() {
-        return Badge.getBadge(getBenefitPrice());
+        return Badge.getBadge(getPrice());
     }
 }
