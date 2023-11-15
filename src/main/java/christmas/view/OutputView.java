@@ -38,8 +38,7 @@ public class OutputView {
 
     private void printTotalPrice(int totalPrice) {
         System.out.println(ALERT_TOTAL_PRICE);
-        String formattedPrice = getFormattedPrice(totalPrice);
-        System.out.println(formattedPrice + WON);
+        printFormattedPrice(totalPrice);
         System.out.println();
     }
 
@@ -65,12 +64,7 @@ public class OutputView {
 
     private void printBenefitPrice(int benefitPrice) {
         System.out.println(ALERT_BENEFIT_PRICE);
-        String formattedPrice = getFormattedPrice(benefitPrice);
-        if (benefitPrice != ZERO) {
-            formattedPrice = MINUS + formattedPrice;
-        }
-        System.out.println(formattedPrice + WON);
-        System.out.println();
+        printMinusFormattedPrice(benefitPrice);
     }
 
     private void printAmountOfPayment(int amountOfPayment) {
@@ -96,13 +90,26 @@ public class OutputView {
         return formattedPrice;
     }
 
+    private void printFormattedPrice(int price) {
+        String formattedPrice = getFormattedPrice(price);
+        System.out.println(formattedPrice + WON);
+    }
+
+    private void printMinusFormattedPrice(int price) {
+        String formattedPrice = getFormattedPrice(price);
+        if (price != ZERO) {
+            formattedPrice = MINUS + formattedPrice;
+        }
+        System.out.println(formattedPrice + WON);
+        System.out.println();
+    }
+
     private void printDiscount(Discounts discounts) {
         for (Discount discount : discounts.get()) {
             Integer discountPrice = discount.getPrice();
             if(discountPrice != ZERO) {
                 System.out.print(discount.getName() + COLON);
-                String formattedPrice = getFormattedPrice(discount.getPrice());
-                System.out.println(MINUS + formattedPrice + WON);
+                printMinusFormattedPrice(discountPrice);
             }
         }
     }
