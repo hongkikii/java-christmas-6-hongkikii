@@ -86,8 +86,48 @@ public class Constants {
         public static final Integer WEEKEND_BASE_DISCOUNT = 2023;
     }
 
-    public class Order {
-        public static final Integer MIN_EVENT_APPLY_PRICE = 10000;
+    public class Badge {
+        public static final String STAR_NAME = "별";
+        public static final String TREE_NAME = "트리";
+        public static final String SANTA_NAME = "산타";
+
+        public static final Integer STAR_MIN_PRICE = 5000;
+        public static final Integer TREE_MIN_PRICE = 10000;
+        public static final Integer SANTA_MIN_PRICE = 20000;
+    }
+
+    public class DayInformation {
+        public static final Integer DAY_ONE = 1;
+        public static final Integer DAY_TWO = 2;
+        public static final Integer DAY_THREE = 3;
+        public static final Integer DAY_FOUR = 4;
+        public static final Integer DAY_FIVE = 5;
+        public static final Integer DAY_SIX = 6;
+        public static final Integer DAY_SEVEN = 7;
+        public static final Integer DAY_EIGHT = 8;
+        public static final Integer DAY_NINE = 9;
+        public static final Integer DAY_TEN = 10;
+        public static final Integer DAY_ELEVEN = 11;
+        public static final Integer DAY_TWELVE = 12;
+        public static final Integer DAY_THIRTEEN = 13;
+        public static final Integer DAY_FOURTEEN = 14;
+        public static final Integer DAY_FIFTEEN = 15;
+        public static final Integer DAY_SIXTEEN = 16;
+        public static final Integer DAY_SEVENTEEN = 17;
+        public static final Integer DAY_EIGHTEEN = 18;
+        public static final Integer DAY_NINETEEN = 19;
+        public static final Integer DAY_TWENTY = 20;
+        public static final Integer DAY_TWENTY_ONE = 21;
+        public static final Integer DAY_TWENTY_TWO = 22;
+        public static final Integer DAY_TWENTY_THREE = 23;
+        public static final Integer DAY_TWENTY_FOUR = 24;
+        public static final Integer DAY_TWENTY_FIVE = 25;
+        public static final Integer DAY_TWENTY_SIX = 26;
+        public static final Integer DAY_TWENTY_SEVEN = 27;
+        public static final Integer DAY_TWENTY_EIGHT = 28;
+        public static final Integer DAY_TWENTY_NINE = 29;
+        public static final Integer DAY_THIRTY = 30;
+        public static final Integer DAY_THIRTY_ONE = 31;
     }
 
     public class Menu {
@@ -103,8 +143,8 @@ public class Constants {
         public static final String ZERO_COLA_NAME = "제로콜라";
         public static final String RED_WINE_NAME = "레드와인";
         public static final String CHAMPAGNE_NAME = "샴페인";
-
         public static final Integer MUSHROOM_SOUP_PRICE = 6000;
+
         public static final Integer TAPAS_PRICE = 5500;
         public static final Integer CAESAR_SALAD_PRICE = 8000;
         public static final Integer T_BONE_STAKE_PRICE = 55000;
@@ -118,13 +158,7 @@ public class Constants {
         public static final Integer CHAMPAGNE_PRICE = 25000;
     }
 
-    public class Badge {
-        public static final String STAR_NAME = "별";
-        public static final String TREE_NAME = "트리";
-        public static final String SANTA_NAME = "산타";
-
-        public static final Integer STAR_MIN_PRICE = 5000;
-        public static final Integer TREE_MIN_PRICE = 10000;
-        public static final Integer SANTA_MIN_PRICE = 20000;
+    public class Order {
+        public static final Integer MIN_EVENT_APPLY_PRICE = 10000;
     }
 }
