@@ -1,7 +1,8 @@
 package christmas.domain.discount;
 
+import static org.assertj.core.api.Assertions.*;
+
 import christmas.domain.Order;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -23,37 +24,33 @@ class WeekendTest {
     @Test
     void checkWeekend() {
         order.save(oneMainTwoCount);
-        Weekend weekend = applyDiscount(weekendDate);
-        Assertions.assertThat(weekend.getPrice()).isNotEqualTo(0);
+        Weekend weekend = new Weekend();
+        weekend.calculate(weekendDate, order);
+        assertThat(weekend.getPrice()).isNotEqualTo(0);
     }
 
     @DisplayName("평일에는 주말 할인을 적용하지 않는다.")
     @Test
     void checkWeekday() {
-        order.save(oneMainTwoCount);
-        Weekend weekend = applyDiscount(weekdayDate);
-        Assertions.assertThat(weekend.getPrice()).isEqualTo(0);
+        expectEqual(oneMainTwoCount, weekdayDate, 0);
     }
 
     @DisplayName("메인 메뉴 1개당 2023원씩 할인을 적용한다. - 같은 메인")
     @Test
     void checkSameMenuDiscount() {
-        order.save(oneMainTwoCount);
-        Weekend weekend = applyDiscount(weekendDate);
-        Assertions.assertThat(weekend.getPrice()).isEqualTo(4046);
+        expectEqual(oneMainTwoCount, weekendDate, 4046);
     }
 
     @DisplayName("메인 메뉴 1개당 2023원씩 할인을 적용한다. - 다른 메인")
     @Test
     void checkDifferentMenuDiscount() {
-        order.save(twoMainOneCount);
-        Weekend weekend = applyDiscount(weekendDate);
-        Assertions.assertThat(weekend.getPrice()).isEqualTo(4046);
+        expectEqual(twoMainOneCount, weekendDate, 4046);
     }
 
-    Weekend applyDiscount(int date) {
-        Weekend result = new Weekend();
-        result.calculate(date, order);
-        return result;
+    void expectEqual(String menu, int date, int result) {
+        order.save(menu);
+        Weekend weekend = new Weekend();
+        weekend.calculate(date, order);
+        assertThat(weekend.getPrice()).isEqualTo(result);
     }
 }
