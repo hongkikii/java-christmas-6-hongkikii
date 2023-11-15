@@ -9,15 +9,13 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class InputViewTest extends NsTest {
-    private InputView inputView;
-    private String normalMenu;
     private String normalDate;
+    private String normalMenu;
 
     @BeforeEach
     void setUp() {
-        inputView = new InputView();
-        normalMenu = "타파스-1,제로콜라-1";
         normalDate = "23";
+        normalMenu = "타파스-1,제로콜라-1";
     }
 
     @DisplayName("날짜를 정상적으로 저장한다.")
