@@ -67,6 +67,8 @@ public class Constants {
     public class Gift {
         public static final String GIFT_DISCOUNT_NAME = "증정 이벤트";
         public static final int MIN_GIFT_PRICE = 120000;
+
+        public static final int GIFT_CHAMPAGNE_COUNT = 1;
     }
 
     public class Special {

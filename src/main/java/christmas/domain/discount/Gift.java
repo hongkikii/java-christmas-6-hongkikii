@@ -1,6 +1,7 @@
 package christmas.domain.discount;
 
 import static christmas.constant.Constants.Gift.*;
+import static christmas.domain.Menu.*;
 
 import christmas.domain.Menu;
 import christmas.domain.Order;
@@ -33,6 +34,7 @@ public class Gift extends Discount {
     }
 
     private void add() {
+        giftMenu.put(CHAMPAGNE, GIFT_CHAMPAGNE_COUNT);
         giftMenu.forEach((menu, count) -> save(menu.getPrice() * count));
     }
 }
