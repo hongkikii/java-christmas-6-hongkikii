@@ -24,6 +24,20 @@ public class Order {
         return getTotalPrice() >= MIN_EVENT_APPLY_PRICE;
     }
 
+    public int getTotalPrice() {
+        return order.entrySet().stream()
+                .mapToInt(entry -> entry.getKey().getPrice() * entry.getValue())
+                .sum();
+    }
+
+    public int countMain() {
+        return countMenu(MAIN);
+    }
+
+    public int countDesert() {
+        return countMenu(DESERT);
+    }
+
     public void save(String orderLine) {
         String[] orders = orderLine.split(ORDER_SPLIT);
         for (String element : orders) {
@@ -37,18 +51,10 @@ public class Order {
         validate();
     }
 
-    public Integer getTotalPrice() {
-        return order.entrySet().stream()
-                .mapToInt(entry -> entry.getKey().getPrice() * entry.getValue())
-                .sum();
-    }
-
-    public int countMain() {
-        return countMenu(MAIN);
-    }
-
-    public int countDesert() {
-        return countMenu(DESERT);
+    private int countMenu(Type type) {
+        return (int) order.keySet().stream()
+                .filter(menu -> menu.getType().equals(type))
+                .count();
     }
 
     private void validate() {
@@ -70,11 +76,5 @@ public class Order {
         if (totalOrder > MAX_ORDER_COUNT) {
             throw new IllegalArgumentException(ERROR_ORDER_EXCEED_MAX);
         }
-    }
-
-    private int countMenu(Type type) {
-        return (int) order.keySet().stream()
-                .filter(menu -> menu.getType().equals(type))
-                .count();
     }
 }
