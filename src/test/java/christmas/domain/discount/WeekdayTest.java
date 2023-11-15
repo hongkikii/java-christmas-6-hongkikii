@@ -1,7 +1,8 @@
 package christmas.domain.discount;
 
+import static org.assertj.core.api.Assertions.*;
+
 import christmas.domain.Order;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -23,37 +24,33 @@ class WeekdayTest {
     @Test
     void checkWeekday() {
         order.save(oneDesertTwoCount);
-        Weekday weekday = applyDiscount(weekdayDate);
-        Assertions.assertThat(weekday.getPrice()).isNotEqualTo(0);
+        Weekday weekday = new Weekday();
+        weekday.calculate(weekdayDate, order);
+        assertThat(weekday.getPrice()).isNotEqualTo(0);
     }
 
     @DisplayName("주말에는 평일 할인을 적용하지 않는다.")
     @Test
     void checkWeekend() {
-        order.save(oneDesertTwoCount);
-        Weekday weekday = applyDiscount(weekendDate);
-        Assertions.assertThat(weekday.getPrice()).isEqualTo(0);
+        expectEqual(oneDesertTwoCount, weekendDate, 0);
     }
 
     @DisplayName("디저트 메뉴 1개당 2023원씩 할인을 적용한다. - 같은 디저트")
     @Test
     void checkSameMenuDiscount() {
-        order.save(oneDesertTwoCount);
-        Weekday weekday = applyDiscount(weekdayDate);
-        Assertions.assertThat(weekday.getPrice()).isEqualTo(4046);
+        expectEqual(oneDesertTwoCount, weekdayDate, 4046);
     }
 
     @DisplayName("디저트 메뉴 1개당 2023원씩 할인을 적용한다. - 다른 디저트")
     @Test
     void checkDifferentMenuDiscount() {
-        order.save(twoDesertOneCount);
-        Weekday weekday = applyDiscount(weekdayDate);
-        Assertions.assertThat(weekday.getPrice()).isEqualTo(4046);
+        expectEqual(twoDesertOneCount, weekdayDate, 4046);
     }
 
-    Weekday applyDiscount(int date) {
-        Weekday result = new Weekday();
-        result.calculate(date, order);
-        return result;
+    void expectEqual(String menu, int date, int result) {
+        order.save(menu);
+        Weekday weekday = new Weekday();
+        weekday.calculate(date, order);
+        assertThat(weekday.getPrice()).isEqualTo(result);
     }
 }
