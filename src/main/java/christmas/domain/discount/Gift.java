@@ -6,7 +6,6 @@ import christmas.domain.Menu;
 import christmas.domain.Order;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Map.Entry;
 
 public class Gift extends Discount {
     private Map<Menu, Integer> giftMenu;
