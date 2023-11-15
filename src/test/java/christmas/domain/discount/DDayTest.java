@@ -20,33 +20,33 @@ class DDayTest {
     @DisplayName("1~25일 동안 이벤트를 적용한다.")
     @Test
     void checkEventPeriod() {
-        DDay dDay1 = applyDDayDiscount(1);
-        assertThat(dDay1.getPrice()).isNotEqualTo(0);
+        expectNotEqual(1,0);
+        expectNotEqual(25, 0);
+    }
 
-        DDay dDay25 = applyDDayDiscount(25);
-        assertThat(dDay25.getPrice()).isNotEqualTo(0);
+    void expectNotEqual(int date, int result) {
+        DDay dDay = new DDay();
+        dDay.calculate(date, order);
+        assertThat(dDay.getPrice()).isNotEqualTo(result);
     }
 
     @DisplayName("26~31일은 이벤트가 적용되지 않는다.")
     @Test
-    void checkNotEventPeroid() {
-        DDay dDay26 = applyDDayDiscount(26);
-        assertThat(dDay26.getPrice()).isEqualTo(0);
+    void checkNotEventPeriod() {
+        expectEqual(26, 0);
+        expectEqual(31, 0);
     }
 
     @DisplayName("1000원부터 시작하여 25일까지 매일 할인 금액이 100원씩 증가한다.")
     @Test
     void checkDiscount() {
-        DDay dDay1 = applyDDayDiscount(1);
-        assertThat(dDay1.getPrice()).isEqualTo(1000);
-
-        DDay dDay25 = applyDDayDiscount(25);
-        assertThat(dDay25.getPrice()).isEqualTo(3400);
+        expectEqual(1, 1000);
+        expectEqual(25, 3400);
     }
 
-    DDay applyDDayDiscount(int date) {
-        DDay result = new DDay();
-        result.calculate(date, order);
-        return result;
+    void expectEqual(int date, int result) {
+        DDay dDay = new DDay();
+        dDay.calculate(date, order);
+        assertThat(dDay.getPrice()).isEqualTo(result);
     }
 }
