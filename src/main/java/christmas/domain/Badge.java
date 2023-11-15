@@ -12,8 +12,8 @@ public enum Badge {
     SANTA(SANTA_NAME, SANTA_MIN_PRICE),
     NONE(X, ZERO);
 
-    private String name;
-    private Integer minPrice;
+    private final String name;
+    private final Integer minPrice;
     private static final Comparator<Badge> BADGE_BY_PRICE = Comparator.comparing(Badge::getMinPrice).reversed();
 
     Badge(String name, Integer minPrice) {
