@@ -1,7 +1,8 @@
 package christmas.domain.discount;
 
+import static org.assertj.core.api.Assertions.*;
+
 import christmas.domain.Order;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -22,29 +23,27 @@ class SpecialTest {
     @Test
     void checkWeekend() {
         order.save(menu);
-        Special special = applyDiscount(specialDate);
-        Assertions.assertThat(special.getPrice()).isNotEqualTo(0);
+        Special special = new Special();
+        special.calculate(specialDate, order);
+        assertThat(special.getPrice()).isNotEqualTo(0);
     }
 
     @DisplayName("별이 표시되지 않은 날에는 특별 할인을 적용하지 않는다.")
     @Test
     void checkWeekday() {
-        order.save(menu);
-        Special special = applyDiscount(noSpecialDate);
-        Assertions.assertThat(special.getPrice()).isEqualTo(0);
+        expectEqual(noSpecialDate, 0);
     }
 
     @DisplayName("1000원의 할인을 적용한다.")
     @Test
     void checkSameMenuDiscount() {
-        order.save(menu);
-        Special special = applyDiscount(specialDate);
-        Assertions.assertThat(special.getPrice()).isEqualTo(1000);
+        expectEqual(specialDate, 1000);
     }
 
-    Special applyDiscount(int date) {
-        Special result = new Special();
-        result.calculate(date, order);
-        return result;
+    void expectEqual(int date, int result) {
+        order.save(menu);
+        Special special = new Special();
+        special.calculate(date, order);
+        assertThat(special.getPrice()).isEqualTo(result);
     }
 }
