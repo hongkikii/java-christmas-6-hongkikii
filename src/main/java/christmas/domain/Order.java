@@ -20,7 +20,7 @@ public class Order {
         return this.order;
     }
 
-    public Boolean getEventApply() {
+    public boolean getEventApply() {
         return getTotalPrice() >= MIN_EVENT_APPLY_PRICE;
     }
 
